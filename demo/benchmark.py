@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from scanner.repo_scanner import scan_repo
-from generator.policy_generator import generate_policy
+from generator.policy_generator import generate_policy, policy_to_yaml
 from audit.bobshell import BobShell
 
 
@@ -88,22 +88,22 @@ def benchmark_forge(repo_path: str) -> dict:
     policy_start = time.time()
     
     try:
-        policy_result = generate_policy(scan_result)
+        policy_dict = generate_policy(scan_result)
+        policy_yaml = policy_to_yaml(policy_dict)
         policy_duration = time.time() - policy_start
-        
-        # Handle both dict and string returns
-        if isinstance(policy_result, dict):
-            policy_yaml = policy_result.get('policy_yaml', '')
-        else:
-            policy_yaml = str(policy_result)
-        
+
         results["timings"]["policy_generation_seconds"] = round(policy_duration, 3)
         results["metrics"]["policy_size_bytes"] = len(policy_yaml)
-        results["metrics"]["policy_lines"] = policy_yaml.count('\n') if policy_yaml else 0
-        
-        # Count policy rules
-        ingress_rules = policy_yaml.count("- name:") if policy_yaml else 0
-        results["metrics"]["policy_rules"] = ingress_rules
+        results["metrics"]["policy_lines"] = policy_yaml.count('\n')
+
+        # Count policy rules across ingress_rules + egress_rules sections of the dict
+        ingress_count = len(policy_dict.get("ingress_rules", []))
+        egress_count = len(policy_dict.get("egress_rules", []))
+        results["metrics"]["policy_rules"] = ingress_count + egress_count
+        results["metrics"]["ingress_rules"] = ingress_count
+        results["metrics"]["egress_rules"] = egress_count
+
+        ingress_rules = ingress_count + egress_count  # for downstream printing
         
         print(f"  ✓ Policy generated in {policy_duration:.3f}s")
         print(f"    Size: {len(policy_yaml)} bytes")
