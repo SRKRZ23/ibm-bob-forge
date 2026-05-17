@@ -26,7 +26,7 @@
   <rect x="60" y="104" width="1800" height="3" fill="#2563EB" rx="1"/>
 
   <!-- Giant GitHub URL -->
-  <text x="960" y="192" font-family="Courier New, monospace" font-size="52" font-weight="700" fill="#0A0A0A" text-anchor="middle">github.com/SRKRZ23/forge</text>
+  <text x="960" y="192" font-family="Courier New, monospace" font-size="52" font-weight="700" fill="#0A0A0A" text-anchor="middle">github.com/SRKRZ23/ibm-bob-forge</text>
 
   <!-- Blue underline -->
   <rect x="300" y="206" width="1320" height="6" fill="#2563EB" rx="2"/>
@@ -40,7 +40,7 @@
   <!-- Evidence items -->
   <text x="84" y="300" font-family="Courier New, monospace" font-size="16" fill="#22C55E">✓</text>
   <text x="114" y="300" font-family="Courier New, monospace" font-size="16" fill="#FFFFFF">python src/test_forge.py</text>
-  <text x="420" y="300" font-family="Courier New, monospace" font-size="16" fill="#2563EB">→ 25/25 PASS</text>
+  <text x="420" y="300" font-family="Courier New, monospace" font-size="16" fill="#2563EB">→ 90/90 PASS</text>
   <text x="700" y="300" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5A5A5A">7 categories · scientific test suite</text>
 
   <text x="84" y="328" font-family="Courier New, monospace" font-size="16" fill="#22C55E">✓</text>
@@ -66,13 +66,13 @@
   <rect x="60" y="452" width="1800" height="68" fill="#EFF6FF" rx="6" stroke="#2563EB" stroke-width="2"/>
   <rect x="60" y="452" width="7" height="68" fill="#2563EB"/>
   <text x="84" y="478" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#0A0A0A">REPRODUCE:</text>
-  <text x="230" y="478" font-family="Courier New, monospace" font-size="17" fill="#2563EB">git clone github.com/SRKRZ23/forge &amp;&amp; python src/cli/__main__.py demo</text>
+  <text x="230" y="478" font-family="Courier New, monospace" font-size="17" fill="#2563EB">git clone github.com/SRKRZ23/ibm-bob-forge &amp;&amp; python src/cli/__main__.py demo</text>
   <text x="84" y="506" font-family="Courier New, monospace" font-size="14" fill="#5A5A5A">No API key required for demo · Mock Bob client included · All 25 tests offline-runnable</text>
 
   <!-- === STATS ROW === -->
   <!-- Stat 1 -->
   <rect x="60" y="544" width="430" height="130" fill="#2563EB" rx="8"/>
-  <text x="275" y="604" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#FFFFFF" text-anchor="middle">25/25</text>
+  <text x="275" y="604" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#FFFFFF" text-anchor="middle">90/90</text>
   <text x="275" y="640" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle" opacity="0.9">Tests PASS</text>
   <text x="275" y="662" font-family="Courier New, monospace" font-size="13" fill="#FFFFFF" text-anchor="middle" opacity="0.7">7 categories verified</text>
 
@@ -105,8 +105,8 @@
   <!-- Bottom CTA bar blue -->
   <rect x="60" y="810" width="1800" height="80" fill="#2563EB" rx="6"/>
   <text x="960" y="856" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle">IBM Bob Hackathon 2026 · Enterprise AI Governance · lablab.ai</text>
-  <text x="960" y="882" font-family="Courier New, monospace" font-size="16" fill="#FFFFFF" text-anchor="middle" opacity="0.8">25/25 PASS · 3 repos · 27ms · BobShell chain_verified: True · MIT · OWASP LLM Top 10</text>
+  <text x="960" y="882" font-family="Courier New, monospace" font-size="16" fill="#FFFFFF" text-anchor="middle" opacity="0.8">90/90 PASS · 3 repos · 27ms · BobShell chain_verified: True · MIT · OWASP LLM Top 10</text>
 
   <!-- Source -->
-  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">github.com/SRKRZ23/forge · MIT License · IBM Bob Hackathon 2026 · lablab.ai · Sardor Razikov</text>
+  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">github.com/SRKRZ23/ibm-bob-forge · MIT License · IBM Bob Hackathon 2026 · lablab.ai · Sardor Razikov</text>
 </svg>

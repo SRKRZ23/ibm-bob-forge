@@ -91,7 +91,7 @@
   <text x="1180" y="490" font-family="Courier New, monospace" font-size="13" fill="#FFFFFF" text-anchor="middle" opacity="0.9">· ingress/egress rules</text>
   <text x="1180" y="512" font-family="Courier New, monospace" font-size="13" fill="#FFFFFF" text-anchor="middle" opacity="0.9">· Lobster Trap compatible</text>
   <text x="1180" y="534" font-family="Courier New, monospace" font-size="13" fill="#FFFFFF" text-anchor="middle" opacity="0.9">· ISO 42001 aligned</text>
-  <text x="1180" y="570" font-family="Courier New, monospace" font-size="12" fill="#FFFFFF" text-anchor="middle" opacity="0.7">github.com/SRKRZ23/forge</text>
+  <text x="1180" y="570" font-family="Courier New, monospace" font-size="12" fill="#FFFFFF" text-anchor="middle" opacity="0.7">github.com/SRKRZ23/ibm-bob-forge</text>
   <text x="1180" y="616" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle">★ KEY STEP</text>
 
   <!-- Arrow 3→4 -->
@@ -126,5 +126,5 @@
   <text x="960" y="870" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#0A0A0A" text-anchor="middle">Total pipeline: SCAN + DETECT + FORGE + AUDIT = 19–27ms across all 3 repos</text>
 
   <!-- Source -->
-  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">Verified: python src/cli/__main__.py demo · src/forge.py · Lobster Trap veeainc/lobstertrap · github.com/SRKRZ23/forge</text>
+  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">Verified: python src/cli/__main__.py demo · src/forge.py · Lobster Trap veeainc/lobstertrap · github.com/SRKRZ23/ibm-bob-forge</text>
 </svg>

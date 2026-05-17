@@ -99,7 +99,7 @@
   <rect x="900" y="618" width="6" height="52" fill="#22C55E"/>
   <text x="920" y="641" font-family="Courier New, monospace" font-size="14" font-weight="700" fill="#22C55E">chain_verified: true</text>
   <text x="920" y="661" font-family="Courier New, monospace" font-size="13" fill="#5A5A5A">All 3 repos: ATLAS ✓  CITADEL ✓  FORGE ✓  — verified by test_forge.py T4</text>
-  <text x="900" y="692" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">→ src/audit/bobshell.py · github.com/SRKRZ23/forge</text>
+  <text x="900" y="692" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">→ src/audit/bobshell.py · github.com/SRKRZ23/ibm-bob-forge</text>
 
   <!-- OWASP coverage table below -->
   <rect x="60" y="692" width="780" height="260" fill="#F4F4F4" rx="6" stroke="#E0E0E0" stroke-width="1"/>
@@ -134,5 +134,5 @@
   <text x="84" y="940" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">6 of 10 OWASP categories · auto-detected · all verified in test suite</text>
 
   <!-- Source -->
-  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">src/audit/bobshell.py · BobShell chain verified in test_forge.py T4 · github.com/SRKRZ23/forge</text>
+  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">src/audit/bobshell.py · BobShell chain verified in test_forge.py T4 · github.com/SRKRZ23/ibm-bob-forge</text>
 </svg>
