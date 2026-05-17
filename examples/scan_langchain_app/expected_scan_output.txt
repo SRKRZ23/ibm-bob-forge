@@ -1,0 +1,86 @@
+🔍 FORGE scanning: /Users/sardorrazikov1/Alish/competitions/ibmbob/forge/examples/scan_langchain_app
+   Output dir:      /Users/sardorrazikov1/Alish/competitions/ibmbob/forge/examples/scan_langchain_app/scan_output
+   Strict mode:     False
+
+============================================================
+FORGE Scan Complete — 2 files, 115 lines
+  LLM call sites:   1
+  Governance gaps:  10
+  Total findings:   10
+
+OWASP breakdown:
+  LLM01 Prompt Injection                  1 finding
+  LLM02 Insecure Output Handling          1 finding
+  LLM04 Model Denial of Service           2 findings
+  LLM05 Supply Chain Vulnerabilities      1 finding
+  LLM06 Sensitive Information Disclosure  1 finding
+  LLM08 Excessive Agency                  4 findings
+
+Severity:
+  HIGH   █████████ 9
+  MEDIUM █ 1
+  LOW    0
+
+Policy:    scan_output/forge_scan_langchain_app.yaml
+BobShell:  scan_output/forge_scan_langchain_app_bobshell.jsonl
+Scan time: 52ms
+
+Top findings:
+  [HIGH  ] LLM06 agent.py:12
+           os.environ["OPENAI_API_KEY"] = "sk-proj-xyz789abc123def456ghi789jkl012mno345"
+           → Move credentials to environment variables; never hardcode API keys
+
+  [HIGH  ] LLM08 agent.py:18
+           def read_file_tool(file_path: str) -> str:
+           → Restrict file access to allowlist; validate paths against traversal attacks
+
+  [HIGH  ] LLM08 agent.py:27
+           result = subprocess.run(command, shell=True, ...)
+           → Never use shell=True with user input; implement command allowlist
+
+  [HIGH  ] LLM08 agent.py:40
+           response = requests.get(url, timeout=None)
+           → Restrict network access to allowlist domains; set timeout
+
+  [HIGH  ] LLM08 agent.py:47
+           def write_file_tool(file_path: str, content: str) -> str:
+           → Restrict write access to safe directories; validate file paths
+
+  [HIGH  ] LLM04 agent.py:79
+           max_iterations=None,  # No limit!
+           → Set max_iterations to prevent infinite loops; recommend 10-20
+
+  [HIGH  ] LLM04 agent.py:80
+           max_execution_time=None  # No timeout!
+           → Set max_execution_time to prevent DoS; recommend 60-120 seconds
+
+  [HIGH  ] LLM01 agent.py:86
+           response = agent.run(user_input)
+           → Sanitize user input before agent processing; validate against injection
+
+  [HIGH  ] LLM02 agent.py:89
+           return response
+           → Validate agent output before returning; check for malicious content
+
+  [MEDIUM] LLM05 requirements.txt:2
+           langchain
+           → Pin dependency versions with hashes; use: langchain==0.1.10 --hash=sha256:...
+
+BobShell chain: ✅ verified (4 actions logged)
+============================================================
+
+Next steps:
+  1. Review generated policy: scan_output/forge_scan_langchain_app.yaml
+  2. Deploy to Lobster Trap: lobstertrap serve --policy scan_output/forge_scan_langchain_app.yaml
+  3. Fix HIGH severity issues in agent.py:
+     - Restrict file system access to /tmp/agent_workspace/
+     - Implement command execution allowlist
+     - Restrict network access to trusted domains
+     - Set max_iterations and max_execution_time
+  4. Pin dependencies in requirements.txt
+  5. Re-scan to verify fixes
+
+For detailed remediation guidance, see:
+  - docs/USAGE.md
+  - docs/OWASP_MAPPING.md
+  - docs/API.md

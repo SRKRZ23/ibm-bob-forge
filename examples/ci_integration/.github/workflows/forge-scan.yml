@@ -1,0 +1,134 @@
+name: FORGE Security Scan
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  forge-security-scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install FORGE
+        run: |
+          git clone https://github.com/your-org/forge.git /tmp/forge
+          cd /tmp/forge
+          pip install -r requirements.txt
+      
+      - name: Run FORGE Security Scan
+        id: forge-scan
+        run: |
+          python -m /tmp/forge/src/cli scan \
+            --repo . \
+            --out ./forge-policies \
+            --strict
+          
+          # Capture scan results
+          echo "scan_complete=true" >> $GITHUB_OUTPUT
+      
+      - name: Upload Policy Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: forge-policies
+          path: forge-policies/
+          retention-days: 30
+      
+      - name: Parse Scan Results
+        id: parse-results
+        run: |
+          # Extract findings count from policy file
+          if [ -f forge-policies/*.yaml ]; then
+            HIGH_COUNT=$(grep -c "severity: HIGH" forge-policies/*.yaml || echo "0")
+            MEDIUM_COUNT=$(grep -c "severity: MEDIUM" forge-policies/*.yaml || echo "0")
+            
+            echo "high_count=$HIGH_COUNT" >> $GITHUB_OUTPUT
+            echo "medium_count=$MEDIUM_COUNT" >> $GITHUB_OUTPUT
+            
+            echo "### FORGE Security Scan Results" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "- **HIGH severity**: $HIGH_COUNT findings" >> $GITHUB_STEP_SUMMARY
+            echo "- **MEDIUM severity**: $MEDIUM_COUNT findings" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      - name: Check for HIGH Severity Findings
+        if: steps.parse-results.outputs.high_count > 0
+        run: |
+          echo "❌ SECURITY ALERT: ${{ steps.parse-results.outputs.high_count }} HIGH severity vulnerabilities found!"
+          echo ""
+          echo "Review the findings in the uploaded artifacts."
+          echo "See docs/OWASP_MAPPING.md for remediation guidance."
+          exit 1
+      
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const high = '${{ steps.parse-results.outputs.high_count }}';
+            const medium = '${{ steps.parse-results.outputs.medium_count }}';
+            
+            const body = `## 🔍 FORGE Security Scan Results
+            
+            | Severity | Count |
+            |----------|-------|
+            | HIGH     | ${high} |
+            | MEDIUM   | ${medium} |
+            
+            ${high > 0 ? '❌ **Action Required**: HIGH severity vulnerabilities detected!' : '✅ No HIGH severity vulnerabilities found.'}
+            
+            📄 Review the generated policy in the workflow artifacts.
+            📚 See [OWASP_MAPPING.md](../docs/OWASP_MAPPING.md) for details.
+            `;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+      
+      - name: Verify BobShell Audit Log
+        run: |
+          python -c "
+          import json
+          import sys
+          
+          # Load and verify BobShell audit log
+          with open('forge-policies/*_bobshell.jsonl', 'r') as f:
+              entries = [json.loads(line) for line in f]
+          
+          # Basic verification
+          if len(entries) < 2:
+              print('❌ Audit log incomplete')
+              sys.exit(1)
+          
+          # Check chain integrity
+          for i in range(1, len(entries)):
+              if entries[i]['prev_hash'] != entries[i-1]['entry_hash']:
+                  print('❌ Audit chain broken!')
+                  sys.exit(1)
+          
+          print('✅ BobShell audit log verified')
+          "
+      
+      - name: Success Summary
+        if: steps.parse-results.outputs.high_count == 0
+        run: |
+          echo "✅ FORGE security scan passed!"
+          echo "No HIGH severity vulnerabilities detected."
+          echo ""
+          echo "Generated policy: forge-policies/*.yaml"
+          echo "Audit log: forge-policies/*_bobshell.jsonl"

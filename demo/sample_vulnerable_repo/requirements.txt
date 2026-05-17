@@ -1,0 +1,5 @@
+# ❌ LLM05: Unpinned dependencies - supply chain vulnerability
+openai
+langchain
+flask
+requests

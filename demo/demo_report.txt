@@ -1,0 +1,33 @@
+╔════════════════════════════════════════════════════════════╗
+║              FORGE Demo Report                             ║
+║         2026-05-17 11:15:24 +05                           ║
+╚════════════════════════════════════════════════════════════╝
+
+SCAN RESULTS
+────────────────────────────────────────────────────────────
+Repository:       /Users/sardorrazikov1/Alish/competitions/ibmbob/forge/demo/sample_vulnerable_repo
+Files scanned:    0
+Total findings:   0
+  HIGH severity:  0
+  MEDIUM severity: 0
+
+OWASP COVERAGE
+────────────────────────────────────────────────────────────
+Categories detected: 
+
+GENERATED POLICY
+────────────────────────────────────────────────────────────
+Policy file:      forge_sample_vulnerable_repo.yaml
+Policy rules:     0
+Rate limiting:    Enabled
+
+AUDIT TRAIL
+────────────────────────────────────────────────────────────
+Audit log:        forge_sample_vulnerable_repo_bobshell.jsonl
+Chain integrity:  ✓ VERIFIED
+
+DEMO STATUS
+────────────────────────────────────────────────────────────
+Overall:          ✓ SUCCESS
+
+All demo artifacts saved to: /Users/sardorrazikov1/Alish/competitions/ibmbob/forge/demo/output

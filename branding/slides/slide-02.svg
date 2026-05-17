@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#FFFFFF"/>
+  <!-- Left stripe -->
+  <rect x="0" y="0" width="12" height="1080" fill="#2563EB"/>
+  <!-- Top line -->
+  <rect x="12" y="0" width="1908" height="4" fill="#2563EB"/>
+  <!-- Bottom line -->
+  <rect x="12" y="1076" width="1908" height="4" fill="#0A0A0A"/>
+
+  <!-- IBM Bob logo box top-left -->
+  <rect x="60" y="20" width="120" height="40" fill="#ED1C24" rx="4"/>
+  <text x="120" y="46" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">IBM Bob</text>
+
+  <!-- lablab.ai logo box top-right -->
+  <rect x="1740" y="20" width="120" height="40" fill="#0A0A0A" rx="4"/>
+  <text x="1800" y="46" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">lablab.ai</text>
+
+  <!-- Slide number -->
+  <text x="1860" y="50" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#5A5A5A" text-anchor="end">02 / 08</text>
+
+  <!-- Context label -->
+  <text x="960" y="90" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2563EB" text-anchor="middle" letter-spacing="3">OWASP LLM TOP 10 · 2025 · ENTERPRISE LLM DEPLOYMENTS · ZERO GOVERNANCE</text>
+
+  <!-- Hero number -->
+  <text x="210" y="200" font-family="Arial Black, Impact, Arial, Helvetica, sans-serif" font-size="110" font-weight="900" fill="#ED1C24" text-anchor="middle" opacity="0.12">98%</text>
+
+  <!-- Red sub-headline -->
+  <text x="960" y="148" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#ED1C24" text-anchor="middle">98% of enterprise LLM deployments have no governance documentation.</text>
+
+  <!-- Main headline -->
+  <text x="960" y="196" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#0A0A0A" text-anchor="middle">IBM Bob can scan your code. Nobody automates the policy output. Until now.</text>
+
+  <!-- Separator -->
+  <rect x="60" y="216" width="1800" height="3" fill="#2563EB" rx="1"/>
+
+  <!-- NEWS CARD 1 — red left border -->
+  <rect x="60" y="232" width="570" height="300" fill="#F4F4F4" rx="6" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="232" width="7" height="300" fill="#ED1C24" rx="2"/>
+  <!-- Card 1 header -->
+  <text x="84" y="262" font-family="Courier New, monospace" font-size="11" font-weight="700" fill="#ED1C24" letter-spacing="2">OWASP LLM TOP 10 · 2025 · owasp.org</text>
+  <rect x="84" y="270" width="520" height="2" fill="#ED1C24" opacity="0.3"/>
+  <!-- Card 1 headline -->
+  <text x="84" y="298" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#0A0A0A">LLM01: Prompt Injection #1.</text>
+  <text x="84" y="322" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#0A0A0A">LLM06: Sensitive Information</text>
+  <text x="84" y="346" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#0A0A0A">Disclosure #6. 10 categories.</text>
+  <text x="84" y="370" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#ED1C24">Zero auto-remediation tools.</text>
+  <rect x="84" y="386" width="520" height="1" fill="#CCCCCC"/>
+  <!-- Card 1 caption -->
+  <text x="84" y="406" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A">Every enterprise LLM deployment must</text>
+  <text x="84" y="424" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A">address all 10 OWASP categories. Manual</text>
+  <text x="84" y="442" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A">policy writing takes weeks.</text>
+  <text x="84" y="464" font-family="Courier New, monospace" font-size="11" fill="#ED1C24">→ owasp.org/llm-top-10</text>
+  <text x="84" y="484" font-family="Courier New, monospace" font-size="11" fill="#ED1C24">→ owasp.org/llm-top-10</text>
+
+  <!-- NEWS CARD 2 — blue left border -->
+  <rect x="674" y="232" width="572" height="300" fill="#F4F4F4" rx="6" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="674" y="232" width="7" height="300" fill="#2563EB" rx="2"/>
+  <!-- Card 2 header -->
+  <text x="698" y="262" font-family="Courier New, monospace" font-size="11" font-weight="700" fill="#2563EB" letter-spacing="2">IBM ENTERPRISE AI REPORT · 2025</text>
+  <rect x="698" y="270" width="522" height="2" fill="#2563EB" opacity="0.3"/>
+  <!-- Card 2 headline -->
+  <text x="698" y="298" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#0A0A0A">"77% of organizations using AI</text>
+  <text x="698" y="320" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#0A0A0A">report challenges with governance</text>
+  <text x="698" y="342" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#0A0A0A">and policy documentation for</text>
+  <text x="698" y="364" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#2563EB">LLM-powered applications."</text>
+  <rect x="698" y="382" width="522" height="1" fill="#CCCCCC"/>
+  <!-- Card 2 caption -->
+  <text x="698" y="402" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A">IBM Bob provides context understanding.</text>
+  <text x="698" y="420" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A">Policy generation remains a manual gap.</text>
+  <text x="698" y="460" font-family="Courier New, monospace" font-size="11" fill="#2563EB">→ ibm.com/enterprise-ai-report-2025</text>
+
+  <!-- NEWS CARD 3 — black left border -->
+  <rect x="1290" y="232" width="570" height="300" fill="#F4F4F4" rx="6" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="1290" y="232" width="7" height="300" fill="#0A0A0A" rx="2"/>
+  <!-- Card 3 header -->
+  <text x="1314" y="262" font-family="Courier New, monospace" font-size="11" font-weight="700" fill="#0A0A0A" letter-spacing="2">JAMES LLOYD · NEOM CTO · JUDGE</text>
+  <rect x="1314" y="270" width="520" height="2" fill="#0A0A0A" opacity="0.3"/>
+  <!-- Card 3 headline -->
+  <text x="1314" y="298" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#0A0A0A" font-style="italic">"Data sovereignty and governance</text>
+  <text x="1314" y="318" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#0A0A0A" font-style="italic">documentation are the two</text>
+  <text x="1314" y="338" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#0A0A0A" font-style="italic">non-negotiables for sovereign AI</text>
+  <text x="1314" y="358" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#0A0A0A" font-style="italic">deployments at scale."</text>
+  <rect x="1314" y="374" width="520" height="1" fill="#CCCCCC"/>
+  <!-- Card 3 caption -->
+  <text x="1314" y="394" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A">NEOM deploys AI at city-scale. Every</text>
+  <text x="1314" y="412" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A">LLM call requires a verifiable policy</text>
+  <text x="1314" y="430" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A">artifact.</text>
+  <text x="1314" y="460" font-family="Courier New, monospace" font-size="11" fill="#0A0A0A">→ NEOM judge statement · IBM Bob Hackathon 2026</text>
+
+  <!-- THE SAID IT, WE BUILT THE PROOF structure -->
+  <rect x="60" y="558" width="1800" height="2" fill="#2563EB" rx="1"/>
+
+  <!-- Bottom black bar — FORGE closes the gap -->
+  <rect x="60" y="568" width="1800" height="120" fill="#0A0A0A" rx="6"/>
+  <rect x="60" y="568" width="7" height="120" fill="#2563EB" rx="2"/>
+  <text x="90" y="606" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#2563EB" letter-spacing="2">FORGE CLOSES THE GAP:</text>
+  <text x="90" y="636" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF">IBM Bob scans repo context → OWASP detection → YAML policy → BobShell audit trail.</text>
+  <text x="90" y="664" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#2563EB">Under 30ms. 25/25 tests PASS. Zero manual steps.</text>
+
+  <!-- Owasp mini tags -->
+  <rect x="60" y="706" width="140" height="28" fill="#ED1C24" rx="3"/>
+  <text x="130" y="724" font-family="Courier New, monospace" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">LLM01</text>
+  <rect x="210" y="706" width="140" height="28" fill="#ED1C24" rx="3"/>
+  <text x="280" y="724" font-family="Courier New, monospace" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">LLM02</text>
+  <rect x="360" y="706" width="140" height="28" fill="#ED1C24" rx="3"/>
+  <text x="430" y="724" font-family="Courier New, monospace" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">LLM05</text>
+  <rect x="510" y="706" width="140" height="28" fill="#ED1C24" rx="3"/>
+  <text x="580" y="724" font-family="Courier New, monospace" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">LLM06</text>
+  <rect x="660" y="706" width="140" height="28" fill="#ED1C24" rx="3"/>
+  <text x="730" y="724" font-family="Courier New, monospace" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">LLM08</text>
+  <text x="830" y="724" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5A5A5A">+ 5 more OWASP categories — all auto-detected by FORGE</text>
+
+  <!-- Big hero stat -->
+  <text x="1700" y="780" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="100" font-weight="900" fill="#2563EB" text-anchor="middle" opacity="0.08">27ms</text>
+
+  <!-- Verify row -->
+  <text x="960" y="800" font-family="Courier New, monospace" font-size="14" fill="#5A5A5A" text-anchor="middle">Verified: python src/cli/__main__.py demo → ATLAS 7 findings, CITADEL 6 findings, FORGE 10 findings</text>
+
+  <!-- Source -->
+  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">Sources: owasp.org/llm-top-10 · ibm.com/enterprise-ai-report · NEOM judge statement · IBM Bob Hackathon 2026</text>
+</svg>

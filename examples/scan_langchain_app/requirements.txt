@@ -1,0 +1,4 @@
+# ❌ VULNERABILITY: LLM05 - Unpinned dependencies
+langchain
+openai
+requests

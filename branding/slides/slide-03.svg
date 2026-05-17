@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#FFFFFF"/>
+  <!-- Left stripe -->
+  <rect x="0" y="0" width="12" height="1080" fill="#2563EB"/>
+  <!-- Top line -->
+  <rect x="12" y="0" width="1908" height="4" fill="#2563EB"/>
+  <!-- Bottom line -->
+  <rect x="12" y="1076" width="1908" height="4" fill="#0A0A0A"/>
+
+  <!-- IBM Bob logo box top-left -->
+  <rect x="60" y="20" width="120" height="40" fill="#ED1C24" rx="4"/>
+  <text x="120" y="46" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">IBM Bob</text>
+
+  <!-- lablab.ai logo box top-right -->
+  <rect x="1740" y="20" width="120" height="40" fill="#0A0A0A" rx="4"/>
+  <text x="1800" y="46" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">lablab.ai</text>
+
+  <!-- Slide number -->
+  <text x="1860" y="50" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#5A5A5A" text-anchor="end">03 / 08</text>
+
+  <!-- Context label -->
+  <text x="960" y="90" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2563EB" text-anchor="middle" letter-spacing="3">IBM BOB · OWASP · WHAT FORGE AUTOMATES</text>
+
+  <!-- They said it headline -->
+  <text x="960" y="148" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="36" font-weight="900" fill="#0A0A0A" text-anchor="middle">IBM said: "govern your AI." OWASP said: "here are the 10 risks."</text>
+
+  <!-- Red sub-headline -->
+  <text x="960" y="192" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#ED1C24" text-anchor="middle">FORGE automates both. In one command. In 27ms.</text>
+
+  <!-- Divider -->
+  <rect x="60" y="212" width="1800" height="3" fill="#2563EB" rx="1"/>
+
+  <!-- === LEFT COLUMN: blockquote boxes === -->
+
+  <!-- Quote box 1 — IBM Bob -->
+  <rect x="60" y="226" width="840" height="240" fill="#F8F8F8" rx="6" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="226" width="7" height="240" fill="#2563EB" rx="2"/>
+  <!-- Quote 1 label -->
+  <text x="84" y="256" font-family="Courier New, monospace" font-size="11" font-weight="700" fill="#2563EB" letter-spacing="2">IBM BOB · ENTERPRISE AI ASSISTANT</text>
+  <rect x="84" y="264" width="800" height="2" fill="#2563EB" opacity="0.25"/>
+  <!-- Quote 1 text -->
+  <text x="84" y="292" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#0A0A0A" font-style="italic">"IBM Bob helps development teams understand,</text>
+  <text x="84" y="316" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#0A0A0A" font-style="italic">navigate and implement enterprise AI applications</text>
+  <text x="84" y="340" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#0A0A0A" font-style="italic">safely, with full context of your organization's</text>
+  <text x="84" y="364" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#0A0A0A" font-style="italic">codebase and policies."</text>
+  <rect x="84" y="380" width="800" height="1" fill="#CCCCCC"/>
+  <text x="84" y="400" font-family="Courier New, monospace" font-size="12" fill="#2563EB">— IBM Bob product documentation · ibm.com/bob</text>
+  <text x="84" y="420" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A" font-style="italic">FORGE extends Bob: from understanding → to verified policy artifact</text>
+  <text x="84" y="454" font-family="Courier New, monospace" font-size="11" fill="#5A5A5A">→ ibm.com/bob</text>
+
+  <!-- Quote box 2 — OWASP -->
+  <rect x="60" y="488" width="840" height="260" fill="#F8F8F8" rx="6" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="488" width="7" height="260" fill="#ED1C24" rx="2"/>
+  <!-- Quote 2 label -->
+  <text x="84" y="518" font-family="Courier New, monospace" font-size="11" font-weight="700" fill="#ED1C24" letter-spacing="2">OWASP LLM TOP 10 · 2025 EDITION</text>
+  <rect x="84" y="526" width="800" height="2" fill="#ED1C24" opacity="0.25"/>
+  <!-- Quote 2 text -->
+  <text x="84" y="556" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#0A0A0A" font-style="italic">"LLM01 Prompt Injection: Attackers manipulate</text>
+  <text x="84" y="578" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#0A0A0A" font-style="italic">LLMs through crafted inputs. This is the #1 risk</text>
+  <text x="84" y="600" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#0A0A0A" font-style="italic">for all LLM-integrated applications. Organizations</text>
+  <text x="84" y="622" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#0A0A0A" font-style="italic">must implement input validation and output</text>
+  <text x="84" y="644" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#ED1C24" font-style="italic">monitoring."</text>
+  <rect x="84" y="660" width="800" height="1" fill="#CCCCCC"/>
+  <text x="84" y="680" font-family="Courier New, monospace" font-size="11" fill="#ED1C24">— OWASP Foundation · owasp.org/www-project-top-10-for-large-language-model-applications</text>
+  <text x="84" y="700" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#5A5A5A" font-style="italic">FORGE auto-detects LLM01 across every call site in your repo</text>
+  <text x="84" y="726" font-family="Courier New, monospace" font-size="11" fill="#5A5A5A">→ owasp.org/llm-top-10</text>
+
+  <!-- === RIGHT COLUMN: FORGE response === -->
+  <rect x="944" y="226" width="816" height="540" fill="#2563EB" rx="8"/>
+  <!-- Right column title -->
+  <text x="1352" y="270" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="22" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">FORGE AUTOMATES BOTH:</text>
+  <rect x="984" y="282" width="736" height="3" fill="#FFFFFF" opacity="0.4"/>
+
+  <!-- Checklist items -->
+  <rect x="984" y="302" width="736" height="44" fill="#FFFFFF" rx="4" opacity="0.1"/>
+  <text x="1004" y="329" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">✓  Bob reads full repo context (every file)</text>
+
+  <rect x="984" y="356" width="736" height="44" fill="#FFFFFF" rx="4" opacity="0.07"/>
+  <text x="1004" y="383" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">✓  Detects all 10 OWASP LLM categories</text>
+
+  <rect x="984" y="410" width="736" height="44" fill="#FFFFFF" rx="4" opacity="0.1"/>
+  <text x="1004" y="437" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">✓  Generates Lobster Trap-compatible YAML</text>
+
+  <rect x="984" y="464" width="736" height="44" fill="#FFFFFF" rx="4" opacity="0.07"/>
+  <text x="1004" y="491" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">✓  BobShell: SHA-256 hash-chained audit trail</text>
+
+  <rect x="984" y="518" width="736" height="44" fill="#FFFFFF" rx="4" opacity="0.1"/>
+  <text x="1004" y="545" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">✓  Every action tamper-evidently logged</text>
+
+  <rect x="984" y="572" width="736" height="44" fill="#FFFFFF" rx="4" opacity="0.07"/>
+  <text x="1004" y="599" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">✓  25/25 tests PASS · 3-repo live demo</text>
+
+  <rect x="984" y="626" width="736" height="44" fill="#FFFFFF" rx="4" opacity="0.1"/>
+  <text x="1004" y="653" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">✓  Lobster Trap serve verified: policy loaded</text>
+
+  <!-- Speed callout in right col -->
+  <rect x="984" y="686" width="736" height="66" fill="#0A0A0A" rx="6"/>
+  <text x="1352" y="726" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="36" font-weight="900" fill="#2563EB" text-anchor="middle">27ms  ·  end-to-end</text>
+
+  <!-- Bottom reproduce bar -->
+  <rect x="60" y="790" width="1800" height="58" fill="#F4F4F4" rx="6" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="790" width="7" height="58" fill="#0A0A0A" rx="2"/>
+  <text x="90" y="816" font-family="Courier New, monospace" font-size="14" font-weight="700" fill="#0A0A0A">Reproduce:</text>
+  <text x="200" y="816" font-family="Courier New, monospace" font-size="14" fill="#2563EB">python src/cli/__main__.py demo</text>
+  <text x="90" y="838" font-family="Courier New, monospace" font-size="13" fill="#5A5A5A">→ ATLAS 7 findings, CITADEL 6 findings, FORGE 10 findings · All BobShell chains verified</text>
+
+  <!-- Source -->
+  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">Sources: ibm.com/bob · owasp.org/www-project-top-10-for-large-language-model-applications · github.com/SRKRZ23/forge</text>
+</svg>

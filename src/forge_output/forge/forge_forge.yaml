@@ -1,0 +1,130 @@
+version: '1.0'
+policy_name: forge_forge
+generated_by: FORGE v1.0
+generated_at: '2026-05-13T17:14:06'
+source_repo: /Users/sardorrazikov1/Alish/competitions/ibmbob/forge
+owasp_findings:
+- LLM01
+- LLM02
+- LLM05
+- LLM06
+- LLM08
+default_action: ALLOW
+ingress_rules:
+- name: forge_block_prompt_injection
+  description: 'FORGE: Block prompt injection (LLM01) — detected in repo scan'
+  priority: 100
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Blocked: prompt injection detected by FORGE governance.'
+  conditions:
+  - field: contains_injection_patterns
+    match_type: boolean
+    value: true
+- name: forge_review_role_override
+  description: 'FORGE: Flag role-override / system-prompt manipulation (LLM01)'
+  priority: 95
+  action: HUMAN_REVIEW
+  conditions:
+  - field: contains_role_impersonation
+    match_type: boolean
+    value: true
+- name: forge_log_llm_output_requests
+  description: 'FORGE: Log all LLM output requests for audit trail (LLM02)'
+  priority: 40
+  action: LOG
+  conditions:
+  - field: intent_category
+    match_type: exact
+    value: general
+- name: forge_block_supply_chain_paths
+  description: 'FORGE: Block access to supply-chain-related paths (LLM05)'
+  priority: 88
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Blocked: supply chain path access denied.'
+  conditions:
+  - field: contains_sensitive_paths
+    match_type: boolean
+    value: true
+- name: forge_block_credential_access
+  description: 'FORGE: Block prompt requests for credentials/PII (LLM06)'
+  priority: 92
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Blocked: credential/PII request detected.'
+  conditions:
+  - field: contains_pii_request
+    match_type: boolean
+    value: true
+- name: forge_review_agentic_tool_calls
+  description: 'FORGE: Human review for agentic tool calls (LLM08 — excessive agency)'
+  priority: 75
+  action: HUMAN_REVIEW
+  conditions:
+  - field: contains_system_commands
+    match_type: boolean
+    value: true
+  - field: risk_score
+    match_type: threshold
+    value: 0.4
+- name: forge_block_dangerous_agentic_commands
+  description: 'FORGE: Block dangerous agentic system commands (LLM08)'
+  priority: 85
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Blocked: dangerous agentic command detected.'
+  conditions:
+  - field: contains_system_commands
+    match_type: boolean
+    value: true
+  - field: risk_score
+    match_type: threshold
+    value: 0.7
+- name: forge_review_high_risk
+  description: 'FORGE: Human review for high risk-score prompts'
+  priority: 70
+  action: HUMAN_REVIEW
+  conditions:
+  - field: risk_score
+    match_type: threshold
+    value: 0.6
+egress_rules:
+- name: forge_block_credential_leak
+  description: 'FORGE: Block output containing credentials'
+  priority: 100
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Output blocked: credentials detected in model response.'
+  conditions:
+  - field: contains_credentials
+    match_type: boolean
+    value: true
+- name: forge_block_pii_output
+  description: 'FORGE: Block output containing PII'
+  priority: 90
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Output blocked: PII detected in model response.'
+  conditions:
+  - field: contains_pii
+    match_type: boolean
+    value: true
+rate_limits:
+  requests_per_minute: 60
+  requests_per_hour: 1800
+  burst_threshold: 15
+network:
+  egress_policy: allowlist
+  allowed_domains:
+  - api.openai.com
+  - api.anthropic.com
+  denied_domains:
+  - '*.onion'
+  - pastebin.com
+filesystem:
+  denied_paths:
+  - /etc/**
+  - /root/**
+  - '**/.ssh/**'
+  - '**/.env'
+  - '**/*secret*'
+  - '**/*password*'
+  allowed_read_paths:
+  - /tmp/agent_workspace/**
+  allowed_write_paths:
+  - /tmp/agent_workspace/**

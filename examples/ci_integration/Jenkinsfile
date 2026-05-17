@@ -1,0 +1,187 @@
+pipeline {
+    agent any
+    
+    environment {
+        FORGE_REPO = 'https://github.com/your-org/forge.git'
+        FORGE_DIR = '/tmp/forge'
+        OUTPUT_DIR = 'forge-policies'
+    }
+    
+    stages {
+        stage('Setup') {
+            steps {
+                echo '🔧 Setting up FORGE...'
+                sh '''
+                    rm -rf ${FORGE_DIR}
+                    git clone ${FORGE_REPO} ${FORGE_DIR}
+                    cd ${FORGE_DIR}
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+        
+        stage('FORGE Security Scan') {
+            steps {
+                echo '🔍 Running FORGE security scan...'
+                sh '''
+                    python -m ${FORGE_DIR}/src/cli scan \
+                        --repo ${WORKSPACE} \
+                        --out ${OUTPUT_DIR} \
+                        --strict
+                '''
+            }
+        }
+        
+        stage('Parse Results') {
+            steps {
+                script {
+                    def policyFile = sh(
+                        script: "ls ${OUTPUT_DIR}/*.yaml | head -n 1",
+                        returnStdout: true
+                    ).trim()
+                    
+                    if (policyFile) {
+                        def highCount = sh(
+                            script: "grep -c 'severity: HIGH' ${policyFile} || echo 0",
+                            returnStdout: true
+                        ).trim().toInteger()
+                        
+                        def mediumCount = sh(
+                            script: "grep -c 'severity: MEDIUM' ${policyFile} || echo 0",
+                            returnStdout: true
+                        ).trim().toInteger()
+                        
+                        echo "HIGH severity findings: ${highCount}"
+                        echo "MEDIUM severity findings: ${mediumCount}"
+                        
+                        env.HIGH_COUNT = highCount
+                        env.MEDIUM_COUNT = mediumCount
+                    }
+                }
+            }
+        }
+        
+        stage('Verify Audit Log') {
+            steps {
+                echo '🔐 Verifying BobShell audit log...'
+                sh '''
+                    python -c "
+import json
+import sys
+import glob
+
+# Find audit log
+audit_files = glob.glob('${OUTPUT_DIR}/*_bobshell.jsonl')
+if not audit_files:
+    print('❌ No audit log found')
+    sys.exit(1)
+
+# Load and verify
+with open(audit_files[0], 'r') as f:
+    entries = [json.loads(line) for line in f]
+
+# Verify chain integrity
+for i in range(1, len(entries)):
+    if entries[i]['prev_hash'] != entries[i-1]['entry_hash']:
+        print('❌ Audit chain broken!')
+        sys.exit(1)
+
+print('✅ BobShell audit log verified')
+print(f'   Entries: {len(entries)}')
+                    "
+                '''
+            }
+        }
+        
+        stage('Security Gate') {
+            steps {
+                script {
+                    if (env.HIGH_COUNT.toInteger() > 0) {
+                        error("❌ SECURITY GATE FAILED: ${env.HIGH_COUNT} HIGH severity vulnerabilities found!")
+                    } else {
+                        echo "✅ Security gate passed"
+                    }
+                }
+            }
+        }
+        
+        stage('Archive Artifacts') {
+            steps {
+                echo '📦 Archiving scan results...'
+                archiveArtifacts artifacts: "${OUTPUT_DIR}/**", fingerprint: true
+            }
+        }
+        
+        stage('Deploy Policy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                input message: 'Deploy policy to Lobster Trap?', ok: 'Deploy'
+                
+                echo '🚀 Deploying policy to Lobster Trap...'
+                sh '''
+                    POLICY_FILE=$(ls ${OUTPUT_DIR}/*.yaml | head -n 1)
+                    
+                    curl -X POST https://lobstertrap.example.com/api/policies \
+                        -H "Authorization: Bearer ${LOBSTERTRAP_API_KEY}" \
+                        -H "Content-Type: application/x-yaml" \
+                        --data-binary @${POLICY_FILE}
+                    
+                    echo "✅ Policy deployed successfully"
+                '''
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo '✅ FORGE security scan completed successfully'
+            emailext(
+                subject: "✅ FORGE Scan Passed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    FORGE security scan completed successfully.
+                    
+                    Results:
+                    - HIGH severity: ${env.HIGH_COUNT}
+                    - MEDIUM severity: ${env.MEDIUM_COUNT}
+                    
+                    Build: ${env.BUILD_URL}
+                    Artifacts: ${env.BUILD_URL}artifact/
+                """,
+                to: "${env.CHANGE_AUTHOR_EMAIL}"
+            )
+        }
+        
+        failure {
+            echo '❌ FORGE security scan failed'
+            emailext(
+                subject: "❌ FORGE Scan Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    FORGE security scan detected vulnerabilities!
+                    
+                    Results:
+                    - HIGH severity: ${env.HIGH_COUNT}
+                    - MEDIUM severity: ${env.MEDIUM_COUNT}
+                    
+                    Action required: Review findings and remediate HIGH severity issues.
+                    
+                    Build: ${env.BUILD_URL}
+                    Artifacts: ${env.BUILD_URL}artifact/
+                    Documentation: https://github.com/your-org/forge/blob/main/docs/OWASP_MAPPING.md
+                """,
+                to: "${env.CHANGE_AUTHOR_EMAIL}, security@example.com"
+            )
+            
+            // Optional: Post to Slack
+            slackSend(
+                color: 'danger',
+                message: "❌ FORGE Scan Failed: ${env.HIGH_COUNT} HIGH severity vulnerabilities in ${env.JOB_NAME} #${env.BUILD_NUMBER}\n${env.BUILD_URL}"
+            )
+        }
+        
+        always {
+            cleanWs()
+        }
+    }
+}

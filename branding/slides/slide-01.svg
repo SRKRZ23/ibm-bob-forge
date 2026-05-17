@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#FFFFFF"/>
+  <!-- Left stripe 12px -->
+  <rect x="0" y="0" width="12" height="1080" fill="#2563EB"/>
+  <!-- Top line 4px -->
+  <rect x="12" y="0" width="1908" height="4" fill="#2563EB"/>
+  <!-- Bottom line 4px -->
+  <rect x="12" y="1076" width="1908" height="4" fill="#0A0A0A"/>
+
+  <!-- IBM Bob logo box top-left -->
+  <rect x="60" y="20" width="120" height="40" fill="#ED1C24" rx="4"/>
+  <text x="120" y="46" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">IBM Bob</text>
+
+  <!-- lablab.ai logo box top-right -->
+  <rect x="1740" y="20" width="120" height="40" fill="#0A0A0A" rx="4"/>
+  <text x="1800" y="46" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">lablab.ai</text>
+
+  <!-- Slide number -->
+  <text x="1860" y="50" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#5A5A5A" text-anchor="end">01 / 08</text>
+
+  <!-- Context label small-caps -->
+  <text x="960" y="90" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2563EB" text-anchor="middle" letter-spacing="3">IBM BOB HACKATHON 2026 · LLM GOVERNANCE · ENTERPRISE SECURITY</text>
+
+  <!-- FORGE wordmark giant -->
+  <text x="960" y="390" font-family="Arial Black, Impact, Arial, Helvetica, sans-serif" font-size="220" font-weight="900" fill="#0A0A0A" text-anchor="middle">FORGE</text>
+
+  <!-- Blue underline bar -->
+  <rect x="260" y="408" width="1400" height="10" fill="#2563EB" rx="2"/>
+
+  <!-- Tagline -->
+  <text x="960" y="476" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="400" fill="#2563EB" text-anchor="middle">IBM Bob-powered LLM governance policy generator</text>
+
+  <!-- Stats row card -->
+  <rect x="180" y="506" width="1560" height="56" fill="#F4F4F4" rx="6" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="180" y="506" width="7" height="56" fill="#2563EB" rx="2"/>
+  <text x="960" y="540" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#0A0A0A" text-anchor="middle" letter-spacing="2">25/25 TESTS PASS · 3 REPOS SCANNED · YAML in 27ms · BobShell chain verified</text>
+
+  <!-- IBM Bob badge black -->
+  <rect x="560" y="590" width="800" height="52" fill="#0A0A0A" rx="6"/>
+  <text x="960" y="622" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">IBM Bob Hackathon 2026 · Enterprise AI Governance Track</text>
+
+  <!-- Track tags -->
+  <rect x="396" y="668" width="240" height="36" fill="#2563EB" rx="4"/>
+  <text x="516" y="691" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">IBM Bob Integration</text>
+  <rect x="656" y="668" width="220" height="36" fill="#ED1C24" rx="4"/>
+  <text x="766" y="691" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">BobShell Audit</text>
+  <rect x="896" y="668" width="240" height="36" fill="#0A0A0A" rx="4"/>
+  <text x="1016" y="691" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">OWASP LLM Top 10</text>
+
+  <!-- Hero stat watermark -->
+  <text x="960" y="870" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="120" font-weight="900" fill="#2563EB" text-anchor="middle" opacity="0.06">25/25</text>
+
+  <!-- Sardor credentials -->
+  <text x="960" y="780" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#5A5A5A" text-anchor="middle">Sardor Razikov · Independent ML Engineer · Top 1.9% Kaggle SPR · Zenodo Author · Tashkent, Uzbekistan</text>
+
+  <!-- Source -->
+  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">Source: github.com/SRKRZ23/forge · python src/test_forge.py → 25/25 PASS · IBM Bob Hackathon 2026 · lablab.ai</text>
+</svg>

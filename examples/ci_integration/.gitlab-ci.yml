@@ -1,0 +1,126 @@
+# GitLab CI/CD Pipeline with FORGE Security Scan
+
+stages:
+  - security
+  - deploy
+
+variables:
+  FORGE_REPO: "https://github.com/your-org/forge.git"
+  FORGE_OUTPUT: "./forge-policies"
+
+# FORGE Security Scan Job
+forge-security-scan:
+  stage: security
+  image: python:3.10
+  
+  before_script:
+    - pip install --upgrade pip
+    - git clone $FORGE_REPO /tmp/forge
+    - cd /tmp/forge && pip install -r requirements.txt
+    - cd $CI_PROJECT_DIR
+  
+  script:
+    - echo "🔍 Running FORGE security scan..."
+    - python -m /tmp/forge/src/cli scan --repo . --out $FORGE_OUTPUT --strict
+    
+    # Parse results
+    - |
+      if [ -f $FORGE_OUTPUT/*.yaml ]; then
+        HIGH_COUNT=$(grep -c "severity: HIGH" $FORGE_OUTPUT/*.yaml || echo "0")
+        MEDIUM_COUNT=$(grep -c "severity: MEDIUM" $FORGE_OUTPUT/*.yaml || echo "0")
+        
+        echo "HIGH severity findings: $HIGH_COUNT"
+        echo "MEDIUM severity findings: $MEDIUM_COUNT"
+        
+        # Fail if HIGH severity found
+        if [ "$HIGH_COUNT" -gt "0" ]; then
+          echo "❌ SECURITY ALERT: $HIGH_COUNT HIGH severity vulnerabilities!"
+          exit 1
+        fi
+        
+        echo "✅ Security scan passed"
+      fi
+  
+  artifacts:
+    paths:
+      - $FORGE_OUTPUT/
+    expire_in: 30 days
+    reports:
+      # Optional: Generate JUnit report for GitLab UI
+      junit: $FORGE_OUTPUT/junit-report.xml
+  
+  only:
+    - main
+    - develop
+    - merge_requests
+  
+  allow_failure: false
+
+# Verify BobShell Audit Log
+verify-audit-log:
+  stage: security
+  image: python:3.10
+  
+  dependencies:
+    - forge-security-scan
+  
+  script:
+    - |
+      python -c "
+      import json
+      import sys
+      import glob
+      
+      # Find BobShell audit log
+      audit_files = glob.glob('$FORGE_OUTPUT/*_bobshell.jsonl')
+      if not audit_files:
+          print('❌ No audit log found')
+          sys.exit(1)
+      
+      # Load and verify
+      with open(audit_files[0], 'r') as f:
+          entries = [json.loads(line) for line in f]
+      
+      # Verify chain
+      for i in range(1, len(entries)):
+          if entries[i]['prev_hash'] != entries[i-1]['entry_hash']:
+              print('❌ Audit chain broken!')
+              sys.exit(1)
+      
+      print('✅ BobShell audit log verified')
+      print(f'   Entries: {len(entries)}')
+      "
+  
+  only:
+    - main
+    - develop
+    - merge_requests
+
+# Deploy policy (only on main branch)
+deploy-policy:
+  stage: deploy
+  image: alpine:latest
+  
+  dependencies:
+    - forge-security-scan
+  
+  before_script:
+    - apk add --no-cache curl
+  
+  script:
+    - echo "🚀 Deploying FORGE policy to Lobster Trap..."
+    - |
+      # Deploy to Lobster Trap server
+      POLICY_FILE=$(ls $FORGE_OUTPUT/*.yaml | head -n 1)
+      
+      curl -X POST https://lobstertrap.example.com/api/policies \
+        -H "Authorization: Bearer $LOBSTERTRAP_API_KEY" \
+        -H "Content-Type: application/x-yaml" \
+        --data-binary @$POLICY_FILE
+      
+      echo "✅ Policy deployed successfully"
+  
+  only:
+    - main
+  
+  when: manual  # Require manual approval for deployment

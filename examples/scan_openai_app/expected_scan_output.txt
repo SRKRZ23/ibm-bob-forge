@@ -1,0 +1,73 @@
+🔍 FORGE scanning: /Users/sardorrazikov1/Alish/competitions/ibmbob/forge/examples/scan_openai_app
+   Output dir:      /Users/sardorrazikov1/Alish/competitions/ibmbob/forge/examples/scan_openai_app/scan_output
+   Strict mode:     False
+
+============================================================
+FORGE Scan Complete — 2 files, 98 lines
+  LLM call sites:   4
+  Governance gaps:  8
+  Total findings:   8
+
+OWASP breakdown:
+  LLM01 Prompt Injection                  2 findings
+  LLM02 Insecure Output Handling          1 finding
+  LLM04 Model Denial of Service           1 finding
+  LLM05 Supply Chain Vulnerabilities      1 finding
+  LLM06 Sensitive Information Disclosure  2 findings
+  LLM08 Excessive Agency                  1 finding
+
+Severity:
+  HIGH   ███████ 7
+  MEDIUM █ 1
+  LOW    0
+
+Policy:    scan_output/forge_scan_openai_app.yaml
+BobShell:  scan_output/forge_scan_openai_app_bobshell.jsonl
+Scan time: 45ms
+
+Top findings:
+  [HIGH  ] LLM06 app.py:12
+           openai.api_key = "sk-proj-abc123def456ghi789jkl012mno345pqr678stu901vwx234yz"
+           → Move credentials to environment variables; never hardcode API keys
+
+  [HIGH  ] LLM01 app.py:33
+           prompt = f"Summarize the following text: {user_text}"
+           → Add SOUF AI DPI input sanitisation before LLM call; validate and escape user input
+
+  [HIGH  ] LLM02 app.py:46
+           return f'<html><body><h1>Summary</h1><div>{llm_output}</div></body></html>'
+           → Add output validation and HTML escaping; use render_template with autoescaping
+
+  [HIGH  ] LLM04 app.py:36
+           max_tokens=None  # No token limit!
+           → Implement rate limiting and set max_tokens; add timeout to prevent DoS
+
+  [MEDIUM] LLM05 requirements.txt:2
+           openai
+           → Pin dependency versions with hashes; use: openai==1.12.0 --hash=sha256:...
+
+  [HIGH  ] LLM06 app.py:56
+           prompt = f"Analyze this user profile: Name: {name}, Email: {email}, SSN: {ssn}"
+           → Redact PII before sending to LLM; never include SSN, email in prompts
+
+  [HIGH  ] LLM06 app.py:63
+           print(f"Analyzed user: {name}, SSN: {ssn}")
+           → Remove PII from logs; use structured logging with PII redaction
+
+  [HIGH  ] LLM08 app.py:82
+           result = subprocess.run(command, shell=True, capture_output=True, text=True)
+           → Restrict command execution to allowlist; never use shell=True with user input
+
+BobShell chain: ✅ verified (4 actions logged)
+============================================================
+
+Next steps:
+  1. Review generated policy: scan_output/forge_scan_openai_app.yaml
+  2. Deploy to Lobster Trap: lobstertrap serve --policy scan_output/forge_scan_openai_app.yaml
+  3. Fix HIGH severity issues in app.py
+  4. Pin dependencies in requirements.txt
+  5. Re-scan to verify fixes
+
+For detailed remediation guidance, see:
+  - docs/USAGE.md
+  - docs/OWASP_MAPPING.md

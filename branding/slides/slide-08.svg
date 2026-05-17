@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#FFFFFF"/>
+  <!-- Left stripe -->
+  <rect x="0" y="0" width="12" height="1080" fill="#2563EB"/>
+  <!-- Top line -->
+  <rect x="12" y="0" width="1908" height="4" fill="#2563EB"/>
+  <!-- Bottom line -->
+  <rect x="12" y="1076" width="1908" height="4" fill="#0A0A0A"/>
+
+  <!-- IBM Bob logo box top-left -->
+  <rect x="60" y="20" width="120" height="40" fill="#ED1C24" rx="4"/>
+  <text x="120" y="46" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">IBM Bob</text>
+
+  <!-- lablab.ai logo box top-right -->
+  <rect x="1740" y="20" width="120" height="40" fill="#0A0A0A" rx="4"/>
+  <text x="1800" y="46" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">lablab.ai</text>
+
+  <!-- Slide number -->
+  <text x="1860" y="50" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#5A5A5A" text-anchor="end">08 / 08</text>
+
+  <!-- Context label -->
+  <text x="960" y="90" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#2563EB" text-anchor="middle" letter-spacing="3">OPEN SOURCE · MIT · VERIFIABLE · IBM BOB HACKATHON 2026</text>
+
+  <!-- Divider -->
+  <rect x="60" y="104" width="1800" height="3" fill="#2563EB" rx="1"/>
+
+  <!-- Giant GitHub URL -->
+  <text x="960" y="192" font-family="Courier New, monospace" font-size="52" font-weight="700" fill="#0A0A0A" text-anchor="middle">github.com/SRKRZ23/forge</text>
+
+  <!-- Blue underline -->
+  <rect x="300" y="206" width="1320" height="6" fill="#2563EB" rx="2"/>
+
+  <!-- === EVIDENCE PACK dark box === -->
+  <rect x="60" y="232" width="1800" height="200" fill="#0A0A0A" rx="8"/>
+  <rect x="60" y="232" width="7" height="200" fill="#2563EB" rx="2"/>
+  <text x="84" y="262" font-family="Courier New, monospace" font-size="14" font-weight="700" fill="#2563EB" letter-spacing="2">FULL EVIDENCE PACK — REPRODUCE IN UNDER 60 SECONDS:</text>
+  <rect x="84" y="270" width="1760" height="2" fill="#2563EB" opacity="0.4"/>
+
+  <!-- Evidence items -->
+  <text x="84" y="300" font-family="Courier New, monospace" font-size="16" fill="#22C55E">✓</text>
+  <text x="114" y="300" font-family="Courier New, monospace" font-size="16" fill="#FFFFFF">python src/test_forge.py</text>
+  <text x="420" y="300" font-family="Courier New, monospace" font-size="16" fill="#2563EB">→ 25/25 PASS</text>
+  <text x="700" y="300" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5A5A5A">7 categories · scientific test suite</text>
+
+  <text x="84" y="328" font-family="Courier New, monospace" font-size="16" fill="#22C55E">✓</text>
+  <text x="114" y="328" font-family="Courier New, monospace" font-size="16" fill="#FFFFFF">python src/cli/__main__.py demo</text>
+  <text x="560" y="328" font-family="Courier New, monospace" font-size="16" fill="#2563EB">→ 3 repos scanned</text>
+  <text x="820" y="328" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5A5A5A">ATLAS 7, CITADEL 6, FORGE 10 findings</text>
+
+  <text x="84" y="356" font-family="Courier New, monospace" font-size="16" fill="#22C55E">✓</text>
+  <text x="114" y="356" font-family="Courier New, monospace" font-size="16" fill="#FFFFFF">BobShell audit trail</text>
+  <text x="380" y="356" font-family="Courier New, monospace" font-size="16" fill="#2563EB">→ chain_verified: True</text>
+  <text x="680" y="356" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5A5A5A">all 3 repos · tamper-evident</text>
+
+  <text x="84" y="384" font-family="Courier New, monospace" font-size="16" fill="#22C55E">✓</text>
+  <text x="114" y="384" font-family="Courier New, monospace" font-size="16" fill="#FFFFFF">lobstertrap serve --policy forge_atlas.yaml</text>
+  <text x="680" y="384" font-family="Courier New, monospace" font-size="16" fill="#2563EB">→ Serving :8080</text>
+  <text x="880" y="384" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#5A5A5A">policy loaded, rules enforced</text>
+
+  <text x="84" y="412" font-family="Courier New, monospace" font-size="16" fill="#22C55E">✓</text>
+  <text x="114" y="412" font-family="Courier New, monospace" font-size="16" fill="#FFFFFF">All output in forge_output/</text>
+  <text x="450" y="412" font-family="Courier New, monospace" font-size="16" fill="#2563EB">→ YAML artifacts committed to repo</text>
+
+  <!-- One-liner reproduce -->
+  <rect x="60" y="452" width="1800" height="68" fill="#EFF6FF" rx="6" stroke="#2563EB" stroke-width="2"/>
+  <rect x="60" y="452" width="7" height="68" fill="#2563EB"/>
+  <text x="84" y="478" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#0A0A0A">REPRODUCE:</text>
+  <text x="230" y="478" font-family="Courier New, monospace" font-size="17" fill="#2563EB">git clone github.com/SRKRZ23/forge &amp;&amp; python src/cli/__main__.py demo</text>
+  <text x="84" y="506" font-family="Courier New, monospace" font-size="14" fill="#5A5A5A">No API key required for demo · Mock Bob client included · All 25 tests offline-runnable</text>
+
+  <!-- === STATS ROW === -->
+  <!-- Stat 1 -->
+  <rect x="60" y="544" width="430" height="130" fill="#2563EB" rx="8"/>
+  <text x="275" y="604" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#FFFFFF" text-anchor="middle">25/25</text>
+  <text x="275" y="640" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle" opacity="0.9">Tests PASS</text>
+  <text x="275" y="662" font-family="Courier New, monospace" font-size="13" fill="#FFFFFF" text-anchor="middle" opacity="0.7">7 categories verified</text>
+
+  <!-- Stat 2 -->
+  <rect x="510" y="544" width="430" height="130" fill="#0A0A0A" rx="8"/>
+  <text x="725" y="604" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#2563EB" text-anchor="middle">27ms</text>
+  <text x="725" y="640" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle" opacity="0.9">End-to-end</text>
+  <text x="725" y="662" font-family="Courier New, monospace" font-size="13" fill="#5A5A5A" text-anchor="middle">scan → YAML → BobShell</text>
+
+  <!-- Stat 3 -->
+  <rect x="960" y="544" width="430" height="130" fill="#ED1C24" rx="8"/>
+  <text x="1175" y="604" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="1175" y="640" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle" opacity="0.9">Live Repos Scanned</text>
+  <text x="1175" y="662" font-family="Courier New, monospace" font-size="13" fill="#FFFFFF" text-anchor="middle" opacity="0.7">ATLAS · CITADEL · FORGE</text>
+
+  <!-- Stat 4 -->
+  <rect x="1410" y="544" width="450" height="130" fill="#F4F4F4" rx="8" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="1410" y="544" width="7" height="130" fill="#22C55E"/>
+  <text x="1635" y="604" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#22C55E" text-anchor="middle">MIT</text>
+  <text x="1635" y="640" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#0A0A0A" text-anchor="middle" font-weight="700">Open Source</text>
+  <text x="1635" y="662" font-family="Courier New, monospace" font-size="13" fill="#5A5A5A" text-anchor="middle">fork · audit · deploy</text>
+
+  <!-- Sardor credentials full -->
+  <rect x="60" y="698" width="1800" height="90" fill="#F8F8F8" rx="6" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="698" width="7" height="90" fill="#2563EB" rx="2"/>
+  <text x="84" y="728" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#0A0A0A">Sardor Razikov</text>
+  <text x="84" y="754" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#5A5A5A">Independent ML Engineer · Top 1.9% Kaggle SPR · Zenodo Author · ORCID: 0009-0007-0731-4247 · Tashkent, Uzbekistan</text>
+  <text x="84" y="776" font-family="Courier New, monospace" font-size="14" fill="#2563EB">razikovsardor1@gmail.com · github.com/SRKRZ23 · @SardorRazi99093</text>
+
+  <!-- Bottom CTA bar blue -->
+  <rect x="60" y="810" width="1800" height="80" fill="#2563EB" rx="6"/>
+  <text x="960" y="856" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle">IBM Bob Hackathon 2026 · Enterprise AI Governance · lablab.ai</text>
+  <text x="960" y="882" font-family="Courier New, monospace" font-size="16" fill="#FFFFFF" text-anchor="middle" opacity="0.8">25/25 PASS · 3 repos · 27ms · BobShell chain_verified: True · MIT · OWASP LLM Top 10</text>
+
+  <!-- Source -->
+  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">github.com/SRKRZ23/forge · MIT License · IBM Bob Hackathon 2026 · lablab.ai · Sardor Razikov</text>
+</svg>
