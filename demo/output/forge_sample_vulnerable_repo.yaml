@@ -1,7 +1,7 @@
 version: '1.0'
 policy_name: forge_sample_vulnerable_repo
 generated_by: FORGE v1.0
-generated_at: '2026-05-17T11:15:24'
+generated_at: '2026-05-17T16:15:21'
 source_repo: /Users/sardorrazikov1/Alish/competitions/ibmbob/forge/demo/sample_vulnerable_repo
 owasp_findings:
 - LLM02
@@ -101,6 +101,15 @@ egress_rules:
   deny_message: '[FORGE/SOUF-AI] Output blocked: PII detected in model response.'
   conditions:
   - field: contains_pii
+    match_type: boolean
+    value: true
+- name: forge_block_system_prompt_leak
+  description: 'FORGE: Block output containing system prompt leakage (LLM07)'
+  priority: 95
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Output blocked: system prompt detected in model response.'
+  conditions:
+  - field: contains_system_prompt
     match_type: boolean
     value: true
 rate_limits:

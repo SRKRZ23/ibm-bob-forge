@@ -33,7 +33,7 @@ OWASP_LLM = {
     "LLM04": "Model Denial of Service",
     "LLM05": "Supply Chain Vulnerabilities",
     "LLM06": "Sensitive Information Disclosure",
-    "LLM07": "Insecure Plugin Design",
+    "LLM07": "System Prompt Leakage",
     "LLM08": "Excessive Agency",
     "LLM09": "Overreliance",
     "LLM10": "Model Theft",
@@ -72,6 +72,13 @@ LLM_CALL_PATTERNS = [
     (r"f['\"].*\{(user_input|query|prompt|message|text|content|request)\}", "fstring_injection", "LLM01"),
     (r'\.format\(.*(?:user_input|query|prompt|message)\)', "str_format_injection", "LLM01"),
     (r"system_prompt\s*\+|prompt\s*\+=|messages\.append\(.*user", "prompt_concat", "LLM01"),
+    
+    # System Prompt Leakage (LLM07)
+    (r"system_prompt\s*=\s*['\"](?:[^'\"]{50,}|.*(?:You are|Act as|Your role).*)['\"]", "hardcoded_system_prompt", "LLM07"),
+    (r"['\"]role['\"]\s*:\s*['\"]system['\"]\s*,\s*['\"]content['\"]\s*:\s*['\"](?:[^'\"]{50,}|.*(?:You are|Act as|assistant))", "hardcoded_system_message", "LLM07"),
+    (r"(?:print|log|logger\.\w+|console\.log)\s*\(.*(?:system_prompt|system_message|system_instruction)", "system_prompt_logging", "LLM07"),
+    (r"system_prompt\s*\+\s*(?:user_input|query|request|message)|(?:user_input|query|request|message)\s*\+\s*system_prompt", "system_prompt_user_concat", "LLM07"),
+    (r"['\"]role['\"]\s*:\s*['\"]system['\"]\s*,\s*['\"]content['\"]\s*:\s*(?:f['\"]|.*\.format\()", "system_prompt_fstring", "LLM07"),
 ]
 
 # ── Missing governance patterns ───────────────────────────────────────────────
@@ -140,7 +147,7 @@ class ScanResult:
 
 
 def _severity(owasp_id: str, pattern_name: str) -> str:
-    high = {"LLM01", "LLM02", "LLM06", "LLM08"}
+    high = {"LLM01", "LLM02", "LLM06", "LLM07", "LLM08"}
     if owasp_id in high:
         return "HIGH"
     if pattern_name in ("hardcoded_api_key", "pii_in_prompt_template"):
@@ -157,7 +164,7 @@ def _suggested_action(owasp_id: str) -> str:
         "LLM04": "Add rate limiting middleware (SOUF AI rate_limits config)",
         "LLM05": "Pin dependency versions, audit supply chain",
         "LLM06": "Move credentials to env vars; add output PII filter (SOUF AI egress rule)",
-        "LLM07": "Validate all plugin inputs and outputs",
+        "LLM07": "Move system prompts to config; add ingress validation and egress logging (SOUF AI)",
         "LLM08": "Add human-in-the-loop gate for agentic tool calls",
     }
     return actions.get(owasp_id, "Review and add appropriate governance layer")

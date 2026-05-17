@@ -90,6 +90,27 @@ OWASP_INGRESS_RULES: dict[str, list[dict]] = {
             ],
         },
     ],
+    "LLM07": [
+        {
+            "name": "forge_validate_system_prompt_requests",
+            "description": "FORGE: Validate requests attempting to extract system prompts (LLM07)",
+            "priority": 90,
+            "action": "DENY",
+            "deny_message": "[FORGE/SOUF-AI] Blocked: system prompt extraction attempt detected.",
+            "conditions": [
+                {"field": "contains_system_prompt_extraction", "match_type": "boolean", "value": True}
+            ],
+        },
+        {
+            "name": "forge_log_system_prompt_access",
+            "description": "FORGE: Log all system prompt access for audit trail (LLM07)",
+            "priority": 50,
+            "action": "LOG",
+            "conditions": [
+                {"field": "accesses_system_prompt", "match_type": "boolean", "value": True}
+            ],
+        },
+    ],
     "LLM08": [
         {
             "name": "forge_review_agentic_tool_calls",
@@ -134,6 +155,16 @@ EGRESS_RULES_BASE: list[dict] = [
         "deny_message": "[FORGE/SOUF-AI] Output blocked: PII detected in model response.",
         "conditions": [
             {"field": "contains_pii", "match_type": "boolean", "value": True}
+        ],
+    },
+    {
+        "name": "forge_block_system_prompt_leak",
+        "description": "FORGE: Block output containing system prompt leakage (LLM07)",
+        "priority": 95,
+        "action": "DENY",
+        "deny_message": "[FORGE/SOUF-AI] Output blocked: system prompt detected in model response.",
+        "conditions": [
+            {"field": "contains_system_prompt", "match_type": "boolean", "value": True}
         ],
     },
 ]

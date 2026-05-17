@@ -361,3 +361,102 @@ class TestOWASPMapping:
         for pattern_tuple in all_patterns:
             owasp_id = pattern_tuple[2]
             assert owasp_id in OWASP_LLM, f"Invalid OWASP ID: {owasp_id}"
+
+
+class TestLLM07SystemPromptLeakage:
+    """Test LLM07: System Prompt Leakage detection patterns."""
+    
+    def test_detect_hardcoded_system_prompt(self, tmp_path):
+        """Test detection of hardcoded system prompts in code."""
+        test_file = tmp_path / "agent.py"
+        test_file.write_text('''
+system_prompt = "You are a helpful AI assistant with access to sensitive data. Your role is to help users."
+response = llm.complete(system_prompt + user_input)
+''')
+        
+        patterns = [(p[0], p[1], p[2]) for p in LLM_CALL_PATTERNS]
+        compiled = [re.compile(p[0]) for p in LLM_CALL_PATTERNS]
+        
+        findings = scan_file_lines(test_file, patterns, compiled)
+        
+        assert len(findings) > 0
+        assert any(f.pattern_name == "hardcoded_system_prompt" for f in findings)
+        assert any(f.owasp_id == "LLM07" for f in findings)
+        assert any(f.severity == "HIGH" for f in findings)
+    
+    def test_detect_hardcoded_system_message(self, tmp_path):
+        """Test detection of hardcoded system messages in message arrays."""
+        test_file = tmp_path / "chat.py"
+        test_file.write_text('''
+messages = [
+    {"role": "system", "content": "You are an AI assistant. Act as a helpful agent with full system access."},
+    {"role": "user", "content": user_query}
+]
+response = client.chat.completions.create(messages=messages)
+''')
+        
+        patterns = [(p[0], p[1], p[2]) for p in LLM_CALL_PATTERNS]
+        compiled = [re.compile(p[0]) for p in LLM_CALL_PATTERNS]
+        
+        findings = scan_file_lines(test_file, patterns, compiled)
+        
+        assert len(findings) > 0
+        assert any(f.pattern_name == "hardcoded_system_message" for f in findings)
+        assert any(f.owasp_id == "LLM07" for f in findings)
+    
+    def test_detect_system_prompt_logging(self, tmp_path):
+        """Test detection of system prompts exposed in logs."""
+        test_file = tmp_path / "debug.py"
+        test_file.write_text('''
+system_prompt = load_system_prompt()
+print(f"Using system prompt: {system_prompt}")
+logger.info(f"System message: {system_message}")
+console.log(system_instruction)
+''')
+        
+        patterns = [(p[0], p[1], p[2]) for p in LLM_CALL_PATTERNS]
+        compiled = [re.compile(p[0]) for p in LLM_CALL_PATTERNS]
+        
+        findings = scan_file_lines(test_file, patterns, compiled)
+        
+        assert len(findings) > 0
+        assert any(f.pattern_name == "system_prompt_logging" for f in findings)
+        assert any(f.owasp_id == "LLM07" for f in findings)
+    
+    def test_detect_system_prompt_user_concatenation(self, tmp_path):
+        """Test detection of system prompts concatenated with user input."""
+        test_file = tmp_path / "unsafe.py"
+        test_file.write_text('''
+# Unsafe: mixing system prompt with user input
+prompt = system_prompt + user_input
+prompt = user_input + system_prompt
+final_prompt = system_prompt + " " + query
+''')
+        
+        patterns = [(p[0], p[1], p[2]) for p in LLM_CALL_PATTERNS]
+        compiled = [re.compile(p[0]) for p in LLM_CALL_PATTERNS]
+        
+        findings = scan_file_lines(test_file, patterns, compiled)
+        
+        assert len(findings) > 0
+        assert any(f.pattern_name == "system_prompt_user_concat" for f in findings)
+        assert any(f.owasp_id == "LLM07" for f in findings)
+    
+    def test_detect_system_prompt_fstring(self, tmp_path):
+        """Test detection of system prompts using f-strings or format."""
+        test_file = tmp_path / "dynamic.py"
+        test_file.write_text('''
+messages = [
+    {"role": "system", "content": f"You are {role_type}"},
+    {"role": "system", "content": template.format(role=user_role)}
+]
+''')
+        
+        patterns = [(p[0], p[1], p[2]) for p in LLM_CALL_PATTERNS]
+        compiled = [re.compile(p[0]) for p in LLM_CALL_PATTERNS]
+        
+        findings = scan_file_lines(test_file, patterns, compiled)
+        
+        assert len(findings) > 0
+        assert any(f.pattern_name == "system_prompt_fstring" for f in findings)
+        assert any(f.owasp_id == "LLM07" for f in findings)
