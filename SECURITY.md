@@ -206,10 +206,10 @@ Entry N: prev_hash = Entry N-1's entry_hash
 
 ### Reporting a Vulnerability
 
-If you discover a security vulnerability in FORGE, please report it responsibly:
+If you discover a security vulnerability in FORGE, please report it responsibly by emailing the maintainer directly. FORGE is a single-maintainer hackathon project; please do not file public GitHub issues for security vulnerabilities.
 
-**Email**: security@forge-project.example.com  
-**PGP Key**: [Available at https://forge-project.example.com/pgp]
+**Email**: razikovsardor1@gmail.com  
+**Subject prefix**: `[FORGE security]`
 
 **Please Include**:
 1. Description of the vulnerability
@@ -222,12 +222,13 @@ If you discover a security vulnerability in FORGE, please report it responsibly:
 - Exploit the vulnerability beyond proof-of-concept testing
 - Access data that doesn't belong to you
 
-### Response Timeline
+### Target Response Timeline
 
-- **24 hours**: Initial acknowledgment
-- **7 days**: Preliminary assessment and severity rating
-- **30 days**: Fix developed and tested (for high-severity issues)
-- **90 days**: Public disclosure (coordinated with reporter)
+As a single-maintainer hackathon project, these are best-effort targets, not contractual commitments:
+
+- **7 days**: Initial acknowledgment
+- **30 days**: Preliminary assessment and severity rating
+- **90 days**: Fix or public disclosure (coordinated with reporter)
 
 ### Severity Ratings
 
@@ -235,11 +236,6 @@ If you discover a security vulnerability in FORGE, please report it responsibly:
 **High**: Path traversal, audit log bypass, DoS  
 **Medium**: Information disclosure, resource exhaustion  
 **Low**: Minor information leaks, non-security bugs
-
-### Hall of Fame
-
-We maintain a security researchers hall of fame at:  
-https://forge-project.example.com/security/hall-of-fame
 
 ---
 
@@ -288,13 +284,16 @@ bob = BobShell()
 assert bob.verify() == True  # Chain intact
 ```
 
-### Compliance Standards
+### Compliance Use Cases
 
-FORGE audit logs support:
-- **SOC 2 Type II**: Tamper-evident logging
-- **ISO 27001**: Security event logging
-- **GDPR**: Audit trail for data processing
-- **HIPAA**: Access logging (when scanning healthcare repos)
+FORGE's tamper-evident BobShell audit format is structured to support common audit-log requirements from the following frameworks. **FORGE itself is not certified against any of these standards** — compliance is the responsibility of the operator of the system that consumes FORGE outputs.
+
+- **SOC 2 Type II** — CC7.2 / CC7.3 (system monitoring, change tracking): tamper-evident logging of policy generation events
+- **ISO/IEC 27001:2022** — A.8.15 (logging): security event logging with cryptographic integrity
+- **ISO/IEC 42001:2023** — A.6.2.6 / A.9.2 (AI system documentation, lifecycle): audit trail for AI policy decisions
+- **EU AI Act (Reg. 2024/1689)** — Article 12 (record-keeping for high-risk AI systems): immutable event log
+- **GDPR** — Article 30 (records of processing): audit trail for data-processing decisions
+- **HIPAA** — 45 CFR 164.312(b) (audit controls): access logging when scanning healthcare-adjacent codebases
 
 ---
 
@@ -308,19 +307,17 @@ FORGE audit logs support:
 - Added cryptographic audit trail validation
 - Added timestamp manipulation detection
 
-### Planned Security Enhancements
+### Potential Security Enhancements (Backlog)
 
-**Version 1.1** (Q3 2026):
+These are unscheduled candidate improvements, not committed roadmap items. There are no release dates.
+
 - [ ] Switch to `re2` library for ReDoS protection
 - [ ] Add output file size limits
 - [ ] Add network access monitoring
 - [ ] Add sandboxing support (seccomp, pledge)
-
-**Version 2.0** (Q1 2027):
-- [ ] Add digital signatures for policies
+- [ ] Add digital signatures for generated policies
 - [ ] Add encrypted audit logs
-- [ ] Add multi-party verification
-- [ ] Add hardware security module (HSM) support
+- [ ] Add multi-party verification of audit chains
 
 ---
 
@@ -335,10 +332,11 @@ FORGE audit logs support:
 
 ## Contact
 
-**Security Team**: security@forge-project.example.com  
-**General Support**: support@forge-project.example.com  
-**Documentation**: https://forge-project.example.com/docs
+**Maintainer**: Sardor Razikov  
+**Security email**: razikovsardor1@gmail.com (subject: `[FORGE security]`)  
+**GitHub**: https://github.com/SRKRZ23/ibm-bob-forge  
+**Documentation**: see [`README.md`](README.md), [`docs/USAGE.md`](docs/USAGE.md), [`docs/API.md`](docs/API.md), [`docs/OWASP_MAPPING.md`](docs/OWASP_MAPPING.md) in this repository
 
 ---
 
-*This security documentation is maintained as part of the FORGE project and is updated with each release.*
+*This security documentation is maintained as part of the FORGE project.*
