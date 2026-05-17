@@ -6,6 +6,20 @@ FORGE uses IBM Bob to deeply understand a repository's context, detect every LLM
 
 ---
 
+## 🚀 Submission (IBM Bob Hackathon, May 2026)
+
+| Resource | Link |
+|----------|------|
+| 🎯 lablab.ai project page | [lablab.ai/.../forge-ai-security-policy-generator-for-llms](https://lablab.ai/ai-hackathons/ibm-bob-hackathon/forge/forge-ai-security-policy-generator-for-llms) |
+| 🎥 Demo video (3:53, unlisted) | [youtu.be/_9PXGN_nxn8](https://youtu.be/_9PXGN_nxn8) |
+| 💼 LinkedIn announcement | [linkedin.com/feed/update/...](https://www.linkedin.com/feed/update/urn:li:activity:7461775548038459392/) |
+| 🐦 X announcement | [@SardorRazi99093](https://x.com/SardorRazi99093) (search `#ibm-bob-hackathon`) |
+| 📺 YouTube channel | [@FORGE-LLM_SECURITY_SCANNER](https://www.youtube.com/@FORGE-LLM_SECURITY_SCANNER) |
+
+**Submitted:** 17 May 2026 18:46 UZT (1h 14m before deadline) · **Status:** Accepted, judging in progress
+
+---
+
 ## What FORGE Does
 
 ```
