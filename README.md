@@ -131,7 +131,7 @@ FORGE scanned 3 repositories in the AI Reliability Ecosystem:
 |------|-------|----------|-------|----------|
 | ATLAS | 15 | 7 | LLM01, LLM02 | ✅ verified (4 actions) |
 | CITADEL | 27 | 6 | LLM01, LLM08 | ✅ verified (4 actions) |
-| FORGE | 9 | 10 | LLM01, LLM02, LLM05, LLM06, LLM08 | ✅ verified (4 actions) |
+| FORGE | 9 | 15 | LLM01, LLM02, LLM05, LLM06, LLM07, LLM08 | ✅ verified (4 actions) |
 
 All policies import successfully into Lobster Trap:
 ```bash
@@ -141,7 +141,7 @@ lobstertrap serve --policy forge_output/atlas/forge_atlas.yaml
 
 ---
 
-## OWASP LLM Top 10 Coverage
+## OWASP LLM Top 10 Coverage (2025 v2)
 
 | ID | Name | Detected By |
 |----|------|-------------|
@@ -150,6 +150,7 @@ lobstertrap serve --policy forge_output/atlas/forge_atlas.yaml
 | LLM04 | Model Denial of Service | Unbounded LLM loops |
 | LLM05 | Supply Chain Vulnerabilities | Unpinned LLM framework imports |
 | LLM06 | Sensitive Information Disclosure | Hardcoded keys, PII in templates |
+| LLM07 | System Prompt Leakage | Hardcoded system prompts, prompt logging, user concatenation, f-string templates |
 | LLM08 | Excessive Agency | subprocess + agent patterns |
 
 ---
@@ -173,7 +174,7 @@ In production: `WATSON_BOB_API_KEY` environment variable activates full Bob API 
 forge/
 ├── src/
 │   ├── scanner/
-│   │   └── repo_scanner.py      # LLM call-site detection + OWASP mapping
+│   │   └── repo_scanner.py      # LLM call-site detection + OWASP mapping (LLM01-LLM10)
 │   ├── generator/
 │   │   └── policy_generator.py  # SOUF AI YAML policy generation
 │   ├── audit/
@@ -181,7 +182,17 @@ forge/
 │   ├── cli/
 │   │   └── __main__.py          # CLI: scan | verify | demo
 │   └── forge.py                 # Full pipeline orchestrator
+├── tests/                       # 95 tests (pytest)
+├── bob_sessions/                # IBM Bob IDE markdown exports + screenshots (mandatory)
+├── docs/                        # USAGE.md, API.md, OWASP_MAPPING.md
+├── examples/                    # Sample apps + CI integrations
+├── demo/                        # sample_vulnerable_repo + benchmarks
 ├── forge_output/                # Generated policies (after running demo)
+├── ONBOARDING.md                # Contributor guide (Bob IDE Task 2 output)
+├── RISK_REGISTER.md             # Security self-audit (Bob IDE Task 3 output)
+├── ARCHITECTURE.md
+├── SECURITY.md
+├── CHANGELOG.md
 └── README.md
 ```
 
@@ -203,14 +214,75 @@ FORGE ──generates policies──► SOUF AI (ATLAS governance layer)
 
 ## Scientific verification
 
-Test suite: **25/25 PASS** — all assertions data-driven, no untested claims.
+Test suite: **95/95 PASS** — all assertions data-driven, no untested claims.
 
 ```bash
-python src/test_forge.py
-# → FORGE Test Suite: 25/25 PASS
-# → All tests PASS — FORGE is submission-ready
+pytest tests/ -v
+# → 95 passed in 1.2s
+# → Coverage: 41% overall, 100% policy_generator, 84% repo_scanner
 ```
 
 ---
 
-*Built for IBM Bob Hackathon 2026 · Part of the AI Reliability Ecosystem: SOUF AI · CITADEL · ATLAS · FORGE*
+## IBM Bob — Mandatory Submission Artifacts
+
+Three productive Bob IDE tasks were executed against the FORGE codebase. Each task includes the exported markdown transcript **and** a screenshot of the Bob IDE task session consumption summary panel, per the official IBM Bob Hackathon Guide (May 2026, pages 18–19).
+
+| # | Task | Markdown export | Screenshot(s) |
+|---|------|-----------------|--------------|
+| 1 | Add OWASP LLM07 System Prompt Leakage detection | [`bob_sessions/task1_llm07.md`](bob_sessions/task1_llm07.md) | [`bob_sessions/task1_llm07_summary.png`](bob_sessions/task1_llm07_summary.png) |
+| 2 | Generate `ONBOARDING.md` contributor guide (717 lines) | [`bob_sessions/task2_onboarding.md`](bob_sessions/task2_onboarding.md) | [`task2_onboarding_summary_1.png`](bob_sessions/task2_onboarding_summary_1.png), [`task2_onboarding_summary_2.png`](bob_sessions/task2_onboarding_summary_2.png) |
+| 3 | Security self-audit → `RISK_REGISTER.md` (595 lines) | [`bob_sessions/task3_risk_register.md`](bob_sessions/task3_risk_register.md) | [`task3_risk_register_summary_1.png`](bob_sessions/task3_risk_register_summary_1.png), [`task3_risk_register_summary_2.png`](bob_sessions/task3_risk_register_summary_2.png) |
+
+**Bobcoin usage:** ~27 / 40 (~68% of allocation). Account: `ibm-coding-challenge-uat` (enterprise plan).
+
+Supplementary Bob Shell session JSON files (the optional CLI variant) are also preserved under `bob_sessions/` as a historical record of the earlier build sprint — see [`bob_sessions/README.md`](bob_sessions/README.md) for the full breakdown.
+
+Bob-produced artifacts now living at project root:
+- [`ONBOARDING.md`](ONBOARDING.md) — 5-minute setup, first scan walkthrough, "how to add a detection pattern" using the real LLM07 example
+- [`RISK_REGISTER.md`](RISK_REGISTER.md) — 5+ identified risks with severity, repro PoC, mitigation, OWASP ASVS cross-references
+
+---
+
+## Author
+
+**Sardor Razikov** — Independent ML Engineer · Founder · Researcher · Tashkent 🇺🇿
+
+**Research & competitions**
+- CVPR 2026 Gait Recognition Challenge: **#2 / 56 teams** (sub40 = 0.90271)
+- Kaggle SPR 2026 Mammography: **#7 / 371 teams** (Top 1.9%) — Portuguese medical NLP / BI-RADS
+- Kaggle S6E3 Customer Churn: #23 / 4,142 (Top 1%)
+- Author: [Epistemic Curie Benchmark](https://doi.org/10.5281/zenodo.19791329) — Zenodo DOI, CC BY 4.0
+- AIMO3 (XTX $2.2M olympiad math): 39 / 50 with custom SC-TIR inference pipeline on gpt-oss-120B
+
+**Founder track record**
+- UCAR (auto-services marketplace, 2023–present) — **U-Start Demo Day 2023 1st place** (85M UZS grant + Korea internship)
+- **KUSE Seoul 2024** — 2nd overall, 1st international (KOICA × Soonchunhyang University)
+- **UJC PMP-43** senior executive Project Management — youngest student ever admitted
+- 5 languages (Uzbek / Russian / English / Turkish B1 / Chinese) · operations across UK, China, Korea, Uzbekistan
+
+**FORGE: built solo across 5 Bob Shell sessions + 3 Bob IDE tasks (~27 / 40 Bobcoins).**
+
+## Team
+
+FORGE was built solo by Sardor Razikov, with informal strategic guidance from a
+small network of senior mentors in Tashkent (technical, business, and operational
+domains). Looking to formalize co-founders and hire engineering team post-funding.
+
+**Inquiries from large strategic partners are welcome** — anyone interested in
+hiring, acquiring, or partnering can reach out at the addresses below.
+
+## Contact
+
+| Channel | Where |
+|---|---|
+| Email (primary) | razikovsardor1@gmail.com |
+| Email (alt) | razikovs777@gmail.com |
+| LinkedIn | [linkedin.com/in/sardor-razikov-569a5327b](https://linkedin.com/in/sardor-razikov-569a5327b) |
+| X | [@SardorRazi99093](https://x.com/SardorRazi99093) |
+| GitHub | [SRKRZ23](https://github.com/SRKRZ23) |
+| lablab | [lablab.ai/u/@Sardor_R](https://lablab.ai/u/@Sardor_R) |
+
+---
+
+Built for the [IBM Bob Hackathon 2026](https://lablab.ai/ai-hackathons/ibm-bob-hackathon) · Part of the AI Reliability Ecosystem: SOUF AI · CITADEL · ATLAS · FORGE

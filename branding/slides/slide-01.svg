@@ -34,7 +34,7 @@
   <!-- Stats row card -->
   <rect x="180" y="506" width="1560" height="56" fill="#F4F4F4" rx="6" stroke="#E0E0E0" stroke-width="1"/>
   <rect x="180" y="506" width="7" height="56" fill="#2563EB" rx="2"/>
-  <text x="960" y="540" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#0A0A0A" text-anchor="middle" letter-spacing="2">90/90 TESTS PASS · 3 REPOS SCANNED · YAML in 27ms · BobShell chain verified</text>
+  <text x="960" y="540" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#0A0A0A" text-anchor="middle" letter-spacing="2">95/95 TESTS PASS · 3 REPOS SCANNED · YAML in 27ms · BobShell chain verified</text>
 
   <!-- IBM Bob badge black -->
   <rect x="560" y="590" width="800" height="52" fill="#0A0A0A" rx="6"/>
@@ -49,11 +49,11 @@
   <text x="1016" y="691" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">OWASP LLM Top 10</text>
 
   <!-- Hero stat watermark -->
-  <text x="960" y="870" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="120" font-weight="900" fill="#2563EB" text-anchor="middle" opacity="0.06">90/90</text>
+  <text x="960" y="870" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="120" font-weight="900" fill="#2563EB" text-anchor="middle" opacity="0.06">95/95</text>
 
   <!-- Sardor credentials -->
   <text x="960" y="780" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#5A5A5A" text-anchor="middle">Sardor Razikov · Independent ML Engineer · Top 1.9% Kaggle SPR · Zenodo Author · Tashkent, Uzbekistan</text>
 
   <!-- Source -->
-  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">Source: github.com/SRKRZ23/ibm-bob-forge · python src/test_forge.py → 90/90 PASS · IBM Bob Hackathon 2026 · lablab.ai</text>
+  <text x="60" y="1055" font-family="Courier New, monospace" font-size="12" fill="#5A5A5A">Source: github.com/SRKRZ23/ibm-bob-forge · python src/test_forge.py → 95/95 PASS · IBM Bob Hackathon 2026 · lablab.ai</text>
 </svg>

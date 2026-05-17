@@ -83,7 +83,7 @@
   <rect x="60" y="568" width="7" height="120" fill="#2563EB" rx="2"/>
   <text x="90" y="606" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#2563EB" letter-spacing="2">FORGE CLOSES THE GAP:</text>
   <text x="90" y="636" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF">IBM Bob scans repo context → OWASP detection → YAML policy → BobShell SHA-256 audit trail.</text>
-  <text x="90" y="664" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#2563EB">Under 30ms. 90/90 tests PASS. Zero manual steps. ISO/IEC 42001:2023 aligned.</text>
+  <text x="90" y="664" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#2563EB">Under 30ms. 95/95 tests PASS. Zero manual steps. ISO/IEC 42001:2023 aligned.</text>
 
   <!-- OWASP mini tags -->
   <rect x="60" y="706" width="140" height="28" fill="#ED1C24" rx="3"/>
