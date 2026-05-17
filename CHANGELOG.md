@@ -5,6 +5,64 @@ All notable changes to FORGE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] — Post-hackathon-submission improvements
+
+> The v1.0 hackathon submission was frozen on 2026-05-17 18:46 UZT. Everything
+> below this heading was added after submission and is **not part of the
+> judging artifact set** — see `ROADMAP.md`. All v1.0 tests (95/95) still pass.
+
+### Added
+
+- **`src/pipeline/`** module — declarative `Plan` + `Task` DAG abstraction
+  inspired by xAI's open-source `grox` content-understanding pipeline (Apache
+  2.0, released 2026-05-15). Lets future FORGE workflows be expressed as a
+  dependency graph (`TASKS` dict + `TASK_DEPENDENCIES` dict) instead of a
+  hand-written sequence. Includes:
+  - `Task` base class with retries, skip-rule routing, timing, and structured
+    error capture
+  - `Plan` orchestrator with topological-sort cycle detection and parallel
+    execution of independent tasks via `asyncio.gather`
+  - `TaskEligibility` enum for plan-master-style dispatch
+- **`src/pipeline/pipeline.py`** — recsys-style typed pipeline traits
+  (`Source` / `Hydrator` / `Filter` / `Scorer` / `Selector` / `SideEffect`),
+  Python re-implementation of xAI's `candidate-pipeline` Rust crate. Use this
+  shape when FORGE-style scanning is reframed as candidate ranking
+  (confidence-scored findings, ranked refactor suggestions).
+- **`src/utils/rate_limiter.py`** — `TokenBucket` + `RateLimiter` (concurrency
+  semaphore + per-second token-bucket rate). Closes the missing-rate-limit
+  gap that the xAI `PlanSafetyPtos` highlighted — production safety
+  pipelines always include a rate-limit stage to protect against abuse and
+  runaway parallelism.
+- **`ROADMAP.md`** — v1 → v1.1 → v2 → v3 vision, including the planned
+  multi-category confidence-scored detection model (multi-action prediction
+  with negative-weight blending, replacing binary find/not-find).
+
+### Patterns adopted from `xai-org/x-algorithm`
+
+| FORGE module | Origin |
+|---|---|
+| `src/pipeline/plan.py` | `grox/plans/plan.py` |
+| `src/pipeline/task.py` | `grox/tasks/task.py` |
+| `src/pipeline/pipeline.py` | `candidate-pipeline/*.rs` traits |
+| `src/utils/rate_limiter.py` | `grox/tasks/task_rate_limit.py` pattern in `PlanSafetyPtos` |
+
+Re-implementation, not a port. Apache 2.0 references for design lineage only.
+
+### Maintenance
+
+- README: top-of-file Submission section linking lablab project page,
+  YouTube demo, LinkedIn post, X handle, YouTube channel.
+- `SECURITY.md`: replaced fake `*.example.com` email/PGP/Hall-of-Fame URLs
+  with real maintainer contact; relabeled aspirational compliance claims as
+  "Compliance Use Cases" with explicit "FORGE is not certified" disclaimer;
+  removed speculative `v1.1 Q3 2026` / `v2.0 Q1 2027` release dates from the
+  Planned Security Enhancements backlog.
+- `verify_bobshell.py` helper script — standalone SHA-256 hash-chain
+  verifier so judges can reproduce the tamper-evident audit demo with one
+  command.
+
+---
+
 ## [1.0.0] - 2026-05-17
 
 ### Added

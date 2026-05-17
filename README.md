@@ -125,6 +125,8 @@ python3 verify_bobshell.py demo/output/forge_sample_vulnerable_repo_bobshell.jso
 - **[OWASP_MAPPING.md](docs/OWASP_MAPPING.md)** — Detailed mapping of OWASP LLM Top 10 to FORGE detection patterns and policies
 - **[SECURITY.md](SECURITY.md)** — Security considerations, threat model, and vulnerability disclosure policy
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** — System architecture and design decisions
+- **[ROADMAP.md](ROADMAP.md)** — v1.1 / v2 / v3 plan with multi-action confidence scoring + Plan/Task DAG architecture
+- **[CHANGELOG.md](CHANGELOG.md)** — Full release history including post-submission improvements
 
 ### 💡 Working Examples
 

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="1152" viewBox="0 0 2048 1152">
+  <!-- Background -->
+  <rect width="2048" height="1152" fill="#0A0A0A"/>
+
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#1A1A1A" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="2048" height="1152" fill="url(#grid)"/>
+  <rect width="2048" height="1152" fill="url(#blueGlow)"/>
+
+  <!-- IBM 8-stripe accent (top) -->
+  <g transform="translate(120, 80)">
+    <rect x="0" y="0" width="200" height="3" fill="#0F62FE"/>
+    <rect x="0" y="6" width="200" height="3" fill="#0F62FE"/>
+    <rect x="0" y="12" width="200" height="3" fill="#0F62FE"/>
+    <rect x="0" y="18" width="200" height="3" fill="#0F62FE"/>
+    <rect x="0" y="24" width="200" height="3" fill="#0F62FE"/>
+    <rect x="0" y="30" width="200" height="3" fill="#0F62FE"/>
+    <rect x="0" y="36" width="200" height="3" fill="#0F62FE"/>
+    <rect x="0" y="42" width="200" height="3" fill="#0F62FE"/>
+  </g>
+
+  <!-- TOP-RIGHT: IBM Bob Hackathon 2026 badge -->
+  <text x="1928" y="100" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="700" font-size="22" fill="#0F62FE" text-anchor="end" letter-spacing="3">IBM BOB HACKATHON 2026</text>
+  <text x="1928" y="130" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="400" font-size="16" fill="#888" text-anchor="end" letter-spacing="2">ENTERPRISE AI GOVERNANCE TRACK</text>
+
+  <!-- LEFT: FORGE F logo block -->
+  <g transform="translate(140, 380)">
+    <rect x="0" y="0" width="280" height="280" fill="#2563EB" rx="8"/>
+    <!-- F letterform -->
+    <rect x="58" y="34" width="30" height="212" fill="#FFFFFF"/>
+    <rect x="58" y="34" width="160" height="30" fill="#FFFFFF"/>
+    <rect x="58" y="134" width="120" height="26" fill="#FFFFFF"/>
+    <!-- Circuit decorations -->
+    <circle cx="234" cy="50" r="6" fill="#FFFFFF" opacity="0.4"/>
+    <circle cx="234" cy="230" r="6" fill="#FFFFFF" opacity="0.4"/>
+    <line x1="220" y1="50" x2="240" y2="50" stroke="#FFFFFF" stroke-width="2" opacity="0.4"/>
+    <line x1="220" y1="230" x2="240" y2="230" stroke="#FFFFFF" stroke-width="2" opacity="0.4"/>
+  </g>
+
+  <!-- CENTER: FORGE wordmark + tagline -->
+  <text x="500" y="500" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="900" font-size="180" fill="#FFFFFF" letter-spacing="14">FORGE</text>
+  <text x="500" y="560" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="500" font-size="32" fill="#2563EB" letter-spacing="4">AI Security Policy Generator for LLM Codebases</text>
+  <text x="500" y="610" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="400" font-size="24" fill="#AAA" letter-spacing="2">Built with IBM Bob · OWASP LLM Top 10 · Lobster Trap YAML · BobShell audit</text>
+
+  <!-- Stats row -->
+  <g transform="translate(500, 660)">
+    <!-- 95/95 -->
+    <rect x="0" y="0" width="220" height="80" fill="#0F1E3D" stroke="#2563EB" stroke-width="2" rx="6"/>
+    <text x="110" y="38" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+          font-weight="900" font-size="32" fill="#2563EB" text-anchor="middle">95/95</text>
+    <text x="110" y="62" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+          font-weight="500" font-size="13" fill="#888" text-anchor="middle" letter-spacing="2">Tests PASS</text>
+
+    <!-- 7 OWASP -->
+    <rect x="240" y="0" width="220" height="80" fill="#1A0F00" stroke="#FF8C00" stroke-width="2" rx="6"/>
+    <text x="350" y="38" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+          font-weight="900" font-size="32" fill="#FF8C00" text-anchor="middle">7 OWASP</text>
+    <text x="350" y="62" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+          font-weight="500" font-size="13" fill="#888" text-anchor="middle" letter-spacing="2">incl. LLM07</text>
+
+    <!-- 27ms -->
+    <rect x="480" y="0" width="220" height="80" fill="#0F2D0F" stroke="#00CC66" stroke-width="2" rx="6"/>
+    <text x="590" y="38" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+          font-weight="900" font-size="32" fill="#00CC66" text-anchor="middle">27ms</text>
+    <text x="590" y="62" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+          font-weight="500" font-size="13" fill="#888" text-anchor="middle" letter-spacing="2">End-to-end</text>
+
+    <!-- SHA-256 -->
+    <rect x="720" y="0" width="280" height="80" fill="#2A0F1F" stroke="#E91E63" stroke-width="2" rx="6"/>
+    <text x="860" y="38" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+          font-weight="900" font-size="28" fill="#E91E63" text-anchor="middle">SHA-256</text>
+    <text x="860" y="62" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+          font-weight="500" font-size="13" fill="#888" text-anchor="middle" letter-spacing="2">BobShell tamper-evident</text>
+  </g>
+
+  <!-- Bottom: contact + GitHub -->
+  <text x="500" y="830" font-family="'SF Mono', 'Menlo', monospace"
+        font-weight="600" font-size="22" fill="#FFF" letter-spacing="1">github.com/SRKRZ23/ibm-bob-forge</text>
+
+  <!-- Bottom credit bar -->
+  <rect x="0" y="1080" width="2048" height="72" fill="#0F62FE"/>
+  <text x="120" y="1126" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="700" font-size="20" fill="#FFFFFF" letter-spacing="3">SARDOR RAZIKOV · INDEPENDENT ML ENGINEER · TASHKENT · OPEN TO ACQUISITION</text>
+  <text x="1928" y="1126" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="500" font-size="18" fill="#FFFFFF" text-anchor="end" letter-spacing="2">MIT LICENSED · 3 BOB IDE + 5 BOB SHELL TASKS</text>
+</svg>
