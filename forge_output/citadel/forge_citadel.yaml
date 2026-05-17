@@ -1,7 +1,7 @@
 version: '1.0'
 policy_name: forge_citadel
 generated_by: FORGE v1.0
-generated_at: '2026-05-13T16:14:12'
+generated_at: '2026-05-17T17:10:53'
 source_repo: /Users/sardorrazikov1/Alish/competitions/gemma4good/citadel
 owasp_findings:
 - LLM01
@@ -73,6 +73,15 @@ egress_rules:
   deny_message: '[FORGE/SOUF-AI] Output blocked: PII detected in model response.'
   conditions:
   - field: contains_pii
+    match_type: boolean
+    value: true
+- name: forge_block_system_prompt_leak
+  description: 'FORGE: Block output containing system prompt leakage (LLM07)'
+  priority: 95
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Output blocked: system prompt detected in model response.'
+  conditions:
+  - field: contains_system_prompt
     match_type: boolean
     value: true
 rate_limits:

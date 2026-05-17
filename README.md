@@ -94,6 +94,10 @@ python src/cli/__main__.py verify --policy forge_output/your-app/forge_your-app.
 
 # Run demo on 3 repos (ATLAS, CITADEL, FORGE itself)
 python src/cli/__main__.py demo
+
+# Verify the BobShell tamper-evident SHA-256 audit chain
+python3 verify_bobshell.py demo/output/forge_sample_vulnerable_repo_bobshell.jsonl
+# → BobShell chain verified: 4 entries, SHA-256 tamper-evident
 ```
 
 ---

@@ -1,13 +1,15 @@
 version: '1.0'
 policy_name: forge_forge
 generated_by: FORGE v1.0
-generated_at: '2026-05-13T16:14:13'
+generated_at: '2026-05-17T17:10:53'
 source_repo: /Users/sardorrazikov1/Alish/competitions/ibmbob/forge
 owasp_findings:
 - LLM01
 - LLM02
+- LLM04
 - LLM05
 - LLM06
+- LLM07
 - LLM08
 default_action: ALLOW
 ingress_rules:
@@ -36,6 +38,14 @@ ingress_rules:
   - field: intent_category
     match_type: exact
     value: general
+- name: forge_rate_limit_high_risk
+  description: 'FORGE: Rate-limit high-risk requests to prevent model DoS (LLM04)'
+  priority: 60
+  action: RATE_LIMIT
+  conditions:
+  - field: risk_score
+    match_type: threshold
+    value: 0.5
 - name: forge_block_supply_chain_paths
   description: 'FORGE: Block access to supply-chain-related paths (LLM05)'
   priority: 88
@@ -52,6 +62,23 @@ ingress_rules:
   deny_message: '[FORGE/SOUF-AI] Blocked: credential/PII request detected.'
   conditions:
   - field: contains_pii_request
+    match_type: boolean
+    value: true
+- name: forge_validate_system_prompt_requests
+  description: 'FORGE: Validate requests attempting to extract system prompts (LLM07)'
+  priority: 90
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Blocked: system prompt extraction attempt detected.'
+  conditions:
+  - field: contains_system_prompt_extraction
+    match_type: boolean
+    value: true
+- name: forge_log_system_prompt_access
+  description: 'FORGE: Log all system prompt access for audit trail (LLM07)'
+  priority: 50
+  action: LOG
+  conditions:
+  - field: accesses_system_prompt
     match_type: boolean
     value: true
 - name: forge_review_agentic_tool_calls
@@ -104,10 +131,19 @@ egress_rules:
   - field: contains_pii
     match_type: boolean
     value: true
+- name: forge_block_system_prompt_leak
+  description: 'FORGE: Block output containing system prompt leakage (LLM07)'
+  priority: 95
+  action: DENY
+  deny_message: '[FORGE/SOUF-AI] Output blocked: system prompt detected in model response.'
+  conditions:
+  - field: contains_system_prompt
+    match_type: boolean
+    value: true
 rate_limits:
-  requests_per_minute: 60
-  requests_per_hour: 1800
-  burst_threshold: 15
+  requests_per_minute: 30
+  requests_per_hour: 900
+  burst_threshold: 7
 network:
   egress_policy: allowlist
   allowed_domains:
