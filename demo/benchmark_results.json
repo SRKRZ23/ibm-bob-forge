@@ -1,0 +1,28 @@
+{
+  "repo_path": "demo/sample_vulnerable_repo",
+  "timings": {
+    "scan_seconds": 0.003,
+    "policy_generation_seconds": 0.0,
+    "audit_logging_seconds": 0.003,
+    "total_seconds": 0.006
+  },
+  "metrics": {
+    "files_scanned": 3,
+    "lines_scanned": 267,
+    "llm_calls_found": 7,
+    "total_findings": 15,
+    "owasp_categories": 4,
+    "high_severity": 12,
+    "medium_severity": 3,
+    "low_severity": 0,
+    "policy_size_bytes": 0,
+    "policy_lines": 0,
+    "policy_rules": 0,
+    "audit_entries": 4,
+    "audit_chain_valid": true,
+    "files_per_second": 1067.98,
+    "lines_per_second": 95050.01
+  },
+  "success": true,
+  "errors": []
+}

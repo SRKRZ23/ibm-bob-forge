@@ -2,6 +2,8 @@
 
 This folder contains exported IBM Bob Shell session reports documenting all AI-assisted development work performed on the FORGE codebase during the IBM Bob Hackathon (May 2026).
 
+> **Note on redactions:** These JSON files were post-processed to replace fake/placeholder credentials (from `demo/sample_vulnerable_repo/config.py`) with `*_FORGE_DEMO_REDACTED` markers. The original "secrets" were intentional placeholders used to test FORGE's OWASP LLM06 detection — none were real tokens. Redaction was done to avoid triggering false-positive alerts in downstream security scanners viewing this public repo. The structure, message count, and content of Bob's actual work are preserved verbatim.
+
 ## Session Files
 
 | File | Size | Entries | Description |

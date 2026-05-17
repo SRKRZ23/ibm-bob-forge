@@ -34,6 +34,4 @@ Thumbs.db
 # Bob Shell (local cache, not session reports)
 .bob/
 
-# Generated demo outputs
-demo/output/
-demo/benchmark_results.json
+# (demo/output/ and demo/benchmark_results.json are committed — show judges sample run)
