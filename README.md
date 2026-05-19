@@ -18,6 +18,9 @@ FORGE uses IBM Bob to deeply understand a repository's context, detect every LLM
 
 **Submitted:** 17 May 2026 18:46 UZT (1h 14m before deadline) · **Status:** Accepted, judging in progress
 
+**📣 Featured in build-in-public posts (4-of-5 hackathon week, $242K+ prize-eligibility):**
+[LinkedIn long-form](https://www.linkedin.com/posts/sardor-razikov-569a5327b_atlas-enterprise-multi-agent-system-ai-activity-7462457002317975552-ADGR) · [X 5-tweet thread](https://x.com/SardorRazi99093/status/2056690128613970060) · [Facebook](https://www.facebook.com/share/p/1Nr4M2WhUG/) — full ecosystem story (FORGE + CITADEL + SOUF AI + ATLAS)
+
 ---
 
 ## What FORGE Does
