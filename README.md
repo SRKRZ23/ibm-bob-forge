@@ -1,8 +1,10 @@
-# FORGE — IBM Bob-Powered LLM Governance Policy Generator
+# FORGE
 
-> **Scan any codebase → detect LLM vulnerabilities → generate enterprise-grade SOUF AI security policies → audit every step with IBM Bob.**
+> **Other tools tell you "your repo has LLM bugs." FORGE writes the YAML policy that fixes them — and signs every step with IBM Bob.**
 
-FORGE uses IBM Bob to deeply understand a repository's context, detect every LLM call site and governance gap, then auto-generates SOUF AI / Lobster Trap YAML policies tailored to that specific codebase.
+**Point FORGE at a GitHub repo. In 2 minutes you get: 7 OWASP LLM categories scanned, every vulnerable call site mapped, a deploy-ready SOUF AI policy file generated, and a tamper-evident audit trail of every decision — signed by IBM Bob.** 95/95 internal tests pass.
+
+**One command from `git clone` to protected policy:** `forge scan https://github.com/your/repo`
 
 ---
 
