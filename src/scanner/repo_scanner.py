@@ -159,12 +159,12 @@ def _severity(owasp_id: str, pattern_name: str) -> str:
 
 def _suggested_action(owasp_id: str) -> str:
     actions = {
-        "LLM01": "Add SOUF AI DPI input sanitisation before LLM call",
+        "LLM01": "Add DPI input sanitisation before LLM call",
         "LLM02": "Add output validation and content filtering post-LLM",
-        "LLM04": "Add rate limiting middleware (SOUF AI rate_limits config)",
+        "LLM04": "Add rate limiting middleware (DPI engine rate_limits config)",
         "LLM05": "Pin dependency versions, audit supply chain",
-        "LLM06": "Move credentials to env vars; add output PII filter (SOUF AI egress rule)",
-        "LLM07": "Move system prompts to config; add ingress validation and egress logging (SOUF AI)",
+        "LLM06": "Move credentials to env vars; add output PII filter (DPI engine egress rule)",
+        "LLM07": "Move system prompts to config; add ingress validation and egress logging (DPI engine)",
         "LLM08": "Add human-in-the-loop gate for agentic tool calls",
     }
     return actions.get(owasp_id, "Review and add appropriate governance layer")

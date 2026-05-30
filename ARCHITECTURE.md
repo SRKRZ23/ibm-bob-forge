@@ -11,7 +11,7 @@ Repository → Scan (OWASP Detection) → Generate (YAML Policy) → Audit (BobS
 ### Primary Objectives
 
 1. **Automated Vulnerability Detection**: Scan codebases for LLM-specific security risks mapped to OWASP LLM Top 10
-2. **Policy Generation**: Convert detected vulnerabilities into actionable SOUF AI/Lobster Trap YAML policies
+2. **Policy Generation**: Convert detected vulnerabilities into actionable DPI engine/Lobster Trap YAML policies
 3. **Compliance Auditing**: Create tamper-evident audit trails via BobShell for enterprise compliance
 4. **Zero-Configuration Security**: Generate deployment-ready policies without manual security expertise
 
@@ -101,7 +101,7 @@ class ScanResult:
 
 #### **B. Policy Generator (`src/generator/policy_generator.py`)**
 
-**Purpose**: Transform scan findings into SOUF AI YAML policies.
+**Purpose**: Transform scan findings into DPI policy YAML policies.
 
 **Key Responsibilities**:
 - Map OWASP categories to concrete ingress/egress rules
@@ -373,7 +373,7 @@ LLMCallSite(
     pattern_name="fstring_injection",
     owasp_id="LLM01",
     severity="HIGH",
-    suggested_action="Add SOUF AI DPI input sanitisation before LLM call"
+    suggested_action="Add DPI input sanitisation before LLM call"
 )
 ```
 
@@ -880,8 +880,8 @@ class TestRegressionSuite:
     def known_good_policies(self):
         """Load known-good policy outputs for regression testing."""
         return {
-            "atlas": Path("tests/fixtures/atlas_policy.yaml"),
-            "citadel": Path("tests/fixtures/citadel_policy.yaml"),
+            "repo_a": Path("tests/fixtures/policy_a.yaml"),
+            "repo_b": Path("tests/fixtures/policy_b.yaml"),
         }
     
     def test_policy_structure_unchanged(self, known_good_policies):

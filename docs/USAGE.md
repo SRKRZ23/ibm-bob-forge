@@ -59,7 +59,7 @@ python -m src.cli scan --repo /path/to/your/llm-app --out ./policies
 **What happens:**
 1. FORGE scans all Python/JS/TS files in the repository
 2. Detects LLM SDK calls and vulnerability patterns
-3. Generates a SOUF AI YAML policy
+3. Generates a DPI policy YAML policy
 4. Creates a tamper-evident BobShell audit log
 
 ### 2. Verify Generated Policy
@@ -122,7 +122,7 @@ Scan time: 127ms
 Top findings:
   [HIGH  ] LLM01 app.py:15
            prompt = f"Summarize: {user_input}"
-           → Add SOUF AI DPI input sanitisation before LLM call
+           → Add DPI input sanitisation before LLM call
   [HIGH  ] LLM02 app.py:20
            return response.choices[0].message.content
            → Add output validation and content filtering post-LLM
@@ -231,7 +231,7 @@ See [OWASP_MAPPING.md](./OWASP_MAPPING.md) for complete details.
 
 After scanning, FORGE creates two files:
 
-1. **`forge_<repo-name>.yaml`**: SOUF AI policy for Lobster Trap
+1. **`forge_<repo-name>.yaml`**: DPI policy for Lobster Trap
 2. **`forge_<repo-name>_bobshell.jsonl`**: Tamper-evident audit log
 
 ### Policy Structure

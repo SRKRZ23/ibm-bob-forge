@@ -2,7 +2,7 @@
 
 > **Other tools tell you "your repo has LLM bugs." FORGE writes the YAML policy that fixes them — and signs every step with IBM Bob.**
 
-**Point FORGE at a GitHub repo. In 2 minutes you get: 7 OWASP LLM categories scanned, every vulnerable call site mapped, a deploy-ready SOUF AI policy file generated, and a tamper-evident audit trail of every decision — signed by IBM Bob.** 95/95 internal tests pass.
+**Point FORGE at a GitHub repo. In 2 minutes you get: 7 OWASP LLM categories scanned, every vulnerable call site mapped, a deploy-ready DPI policy file generated, and a tamper-evident audit trail of every decision — signed by IBM Bob.** 95/95 internal tests pass.
 
 **One command from `git clone` to protected policy:** `forge scan https://github.com/your/repo`
 
@@ -21,7 +21,7 @@
 **Submitted:** 17 May 2026 18:46 UZT (1h 14m before deadline) · **Status:** Accepted, judging in progress
 
 **📣 Featured in build-in-public posts (4-of-5 hackathon week, $242K+ prize-eligibility):**
-[LinkedIn long-form](https://www.linkedin.com/posts/sardor-razikov-569a5327b_atlas-enterprise-multi-agent-system-ai-activity-7462457002317975552-ADGR) · [X 5-tweet thread](https://x.com/SardorRazi99093/status/2056690128613970060) · [Facebook](https://www.facebook.com/share/p/1Nr4M2WhUG/) — full ecosystem story (FORGE + CITADEL + SOUF AI + ATLAS)
+[LinkedIn long-form](https://www.linkedin.com/posts/sardor-razikov-569a5327b_atlas-enterprise-multi-agent-system-ai-activity-7462457002317975552-ADGR) · [X 5-tweet thread](https://x.com/SardorRazi99093/status/2056690128613970060) · [Facebook](https://www.facebook.com/share/p/1Nr4M2WhUG/) — full ecosystem story (FORGE pipeline components)
 
 ---
 
@@ -31,9 +31,9 @@
 GitHub URL / local path
   → Bob: full codebase context scan
   → OWASP LLM Top 10 vulnerability detection
-  → SOUF AI governance policy generation (YAML)
+  → DPI engine governance policy generation (YAML)
   → BobShell: tamper-evident audit trail of every action
-  → Ready-to-deploy policy for Lobster Trap / SOUF AI
+  → Ready-to-deploy policy for Lobster Trap / DPI engine
 ```
 
 **One command. From repo to protected.**
@@ -48,7 +48,7 @@ GitHub URL / local path
 │                                                                 │
 │  Repo Path ──► Scanner ──► Findings ──► Generator ──► Policy   │
 │                   │                          │                  │
-│             OWASP LLM                  SOUF AI YAML             │
+│             OWASP LLM                  DPI policy YAML             │
 │             Top 10 map                  for Lobster Trap        │
 │                   │                          │                  │
 │              BobShell ◄─────────────────────►                   │
@@ -71,7 +71,7 @@ Maps directly to **OWASP LLM Top 10** (LLM01–LLM10).
 
 ### Policy Generator: What It Produces
 
-Generated policies are valid SOUF AI / Lobster Trap YAML, ready for:
+Generated policies are valid DPI engine / Lobster Trap YAML, ready for:
 ```bash
 lobstertrap serve --policy forge_output/my_repo/forge_my_repo.yaml --listen :8080
 ```
@@ -111,7 +111,7 @@ python src/cli/__main__.py scan --repo /path/to/your/llm-app --out ./forge_outpu
 # Verify generated policy structure
 python src/cli/__main__.py verify --policy forge_output/your-app/forge_your-app.yaml
 
-# Run demo on 3 repos (ATLAS, CITADEL, FORGE itself)
+# Run demo on sample repos
 python src/cli/__main__.py demo
 
 # Verify the BobShell tamper-evident SHA-256 audit chain
@@ -154,13 +154,13 @@ FORGE scanned 3 repositories in the AI Reliability Ecosystem:
 
 | Repo | Files | Findings | OWASP | BobShell |
 |------|-------|----------|-------|----------|
-| ATLAS | 15 | 7 | LLM01, LLM02 | ✅ verified (4 actions) |
-| CITADEL | 27 | 6 | LLM01, LLM08 | ✅ verified (4 actions) |
+| RepoA | 15 | 7 | LLM01, LLM02 | ✅ verified (4 actions) |
+| RepoB | 27 | 6 | LLM01, LLM08 | ✅ verified (4 actions) |
 | FORGE | 9 | 15 | LLM01, LLM02, LLM05, LLM06, LLM07, LLM08 | ✅ verified (4 actions) |
 
 All policies import successfully into Lobster Trap:
 ```bash
-lobstertrap serve --policy forge_output/atlas/forge_atlas.yaml
+lobstertrap serve --policy forge_output/repo_a/forge_repo_a.yaml
 # → Serving on :8080 with 4 ingress + 2 egress rules
 ```
 
@@ -201,7 +201,7 @@ forge/
 │   ├── scanner/
 │   │   └── repo_scanner.py      # LLM call-site detection + OWASP mapping (LLM01-LLM10)
 │   ├── generator/
-│   │   └── policy_generator.py  # SOUF AI YAML policy generation
+│   │   └── policy_generator.py  # DPI policy YAML policy generation
 │   ├── audit/
 │   │   └── bobshell.py          # Tamper-evident IBM Bob audit log
 │   ├── cli/
@@ -226,11 +226,11 @@ forge/
 ## Connection to the AI Reliability Ecosystem
 
 ```
-FORGE ──generates policies──► SOUF AI (ATLAS governance layer)
+FORGE ──generates policies──► DPI engine (governance layer)
   │
   └── YAML policies importable into Lobster Trap binary
-  └── BobShell audit trail used in CITADEL L7 compliance reports
-  └── Scans ATLAS + CITADEL repos for vulnerabilities
+  └── BobShell audit trail used in downstream compliance reports
+  └── Scans target repos for vulnerabilities
 ```
 
 **Every hackathon project in this ecosystem uses FORGE-generated policies as its governance foundation.**
@@ -271,7 +271,7 @@ Bob-produced artifacts now living at project root:
 
 ## Author
 
-**Sardor Razikov** — Independent ML Engineer · Founder · Researcher · Tashkent 🇺🇿
+**Sardor Razikov** — Independent ML Engineer · Founder · Researcher 🇺🇿
 
 **Research & competitions**
 - CVPR 2026 Gait Recognition Challenge: **#2 / 56 teams** (sub40 = 0.90271)
@@ -280,18 +280,12 @@ Bob-produced artifacts now living at project root:
 - Author: [Epistemic Curie Benchmark](https://doi.org/10.5281/zenodo.19791329) — Zenodo DOI, CC BY 4.0
 - AIMO3 (XTX $2.2M olympiad math): 39 / 50 with custom SC-TIR inference pipeline on gpt-oss-120B
 
-**Founder track record**
-- UCAR (auto-services marketplace, 2023–present) — **U-Start Demo Day 2023 1st place** (85M UZS grant + Korea internship)
-- **KUSE Seoul 2024** — 2nd overall, 1st international (KOICA × Soonchunhyang University)
-- **UJC PMP-43** senior executive Project Management — youngest student ever admitted
-- 5 languages (Uzbek / Russian / English / Turkish B1 / Chinese) · operations across UK, China, Korea, Uzbekistan
-
 **FORGE: built solo across 5 Bob Shell sessions + 3 Bob IDE tasks (~27 / 40 Bobcoins).**
 
 ## Team
 
 FORGE was built solo by Sardor Razikov, with informal strategic guidance from a
-small network of senior mentors in Tashkent (technical, business, and operational
+small network of senior mentors in  (technical, business, and operational
 domains). Looking to formalize co-founders and hire engineering team post-funding.
 
 **Inquiries from large strategic partners are welcome** — anyone interested in
@@ -310,4 +304,4 @@ hiring, acquiring, or partnering can reach out at the addresses below.
 
 ---
 
-Built for the [IBM Bob Hackathon 2026](https://lablab.ai/ai-hackathons/ibm-bob-hackathon) · Part of the AI Reliability Ecosystem: SOUF AI · CITADEL · ATLAS · FORGE
+Built for the [IBM Bob Hackathon 2026](https://lablab.ai/ai-hackathons/ibm-bob-hackathon) 

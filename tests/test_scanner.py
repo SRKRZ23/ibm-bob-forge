@@ -87,14 +87,14 @@ class TestScannerUtilityFunctions:
     def test_suggested_action_for_llm01(self):
         """Test suggested action for prompt injection."""
         action = _suggested_action("LLM01")
-        assert "SOUF AI" in action
+        assert "DPI engine" in action  # generic DPI engine reference
         assert "input sanitisation" in action.lower()
     
     def test_suggested_action_for_llm06(self):
         """Test suggested action for credential exposure."""
         action = _suggested_action("LLM06")
         assert "env vars" in action.lower()
-        assert "PII filter" in action
+        assert "PII filter" in action  # generic DPI engine reference
 
 
 class TestScanFileLines:

@@ -21,7 +21,7 @@ Comprehensive mapping of OWASP LLM vulnerabilities to FORGE detection patterns, 
 
 FORGE maps OWASP LLM Top 10 vulnerabilities to:
 1. **Detection Patterns**: Code patterns that indicate vulnerabilities
-2. **YAML Policy Rules**: SOUF AI rules generated for Lobster Trap
+2. **YAML Policy Rules**: DPI engine rules generated for Lobster Trap
 3. **Lobster Trap Actions**: Runtime enforcement actions
 
 ### Severity Levels

@@ -215,9 +215,9 @@ def cmd_demo(args: argparse.Namespace) -> None:
     # Derive demo repo paths relative to this file's location (portable across machines)
     _COMPETITIONS = Path(__file__).resolve().parents[4]
     repos = args.repos or [
-        str(_COMPETITIONS / "aiagentolympics" / "atlas"),
-        str(_COMPETITIONS / "gemma4good" / "citadel"),
-        str(_COMPETITIONS / "ibmbob" / "forge"),
+        "./demo_repos/repo_a",
+        "./demo_repos/repo_b",
+        "./demo_repos/repo_c",
     ]
 
     print("\n🔷 FORGE Demo — scanning 3 repos")
@@ -253,7 +253,7 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
 
     # scan
-    p_scan = sub.add_parser("scan", help="Scan a repo and generate SOUF AI policy")
+    p_scan = sub.add_parser("scan", help="Scan a repo and generate DPI engine policy")
     p_scan.add_argument("--repo", required=True, help="Path to repository to scan")
     p_scan.add_argument("--out", default=None, help="Output directory (default: forge_output/)")
     p_scan.add_argument("--strict", action="store_true", help="Enable strict mode (lower rate limits)")

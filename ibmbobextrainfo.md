@@ -105,7 +105,7 @@
    - Use Settings → switch to hackathon team
 
 3. **Open FORGE folder in Bob IDE** (2 min)
-   - File → Open Folder → `/Users/sardorrazikov1/Alish/competitions/ibmbob/forge`
+   - File → Open Folder → `./forge` (path on your machine)
 
 4. **Run 2-3 productive tasks** (30 min, ~5-8 Bobcoins of remaining 19)
    - Task 1: "Add new pattern detection for LLM07 System Prompt Leakage (OWASP 2025 v2 category)"

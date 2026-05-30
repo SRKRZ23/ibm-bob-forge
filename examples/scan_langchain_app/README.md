@@ -33,7 +33,7 @@ See `expected_scan_output.txt` for the complete scan results.
 
 ## Generated Policy
 
-See `forge_scan_langchain_app.yaml` for the complete SOUF AI policy.
+See `forge_scan_langchain_app.yaml` for the complete DPI policy.
 
 **Key Rules:**
 1. Restrict file system access to `/tmp/agent_workspace/`

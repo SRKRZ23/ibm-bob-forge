@@ -139,14 +139,14 @@ Re-implementation, not a port. Apache 2.0 references for design lineage only.
   - `app.py` - Vulnerable application with 8 security issues
   - `requirements.txt` - Unpinned dependencies
   - `expected_scan_output.txt` - Detailed scan results
-  - `forge_scan_openai_app.yaml` - Generated SOUF AI policy
+  - `forge_scan_openai_app.yaml` - Generated DPI policy
   - `README.md` - Usage and testing instructions
 
 - **examples/scan_langchain_app/** - LangChain agent:
   - `agent.py` - Vulnerable agent with 10 security issues
   - `requirements.txt` - Unpinned dependencies
   - `expected_scan_output.txt` - Detailed scan results
-  - `forge_scan_langchain_app.yaml` - Generated SOUF AI policy
+  - `forge_scan_langchain_app.yaml` - Generated DPI policy
   - `README.md` - Usage and testing instructions
 
 - **examples/ci_integration/** - CI/CD pipeline configurations:

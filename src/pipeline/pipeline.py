@@ -4,7 +4,7 @@ candidate-pipeline crate (Apache 2.0).
 
 Use this when FORGE-style scanning is reframed as a "candidate ranking"
 problem (e.g. confidence-scored findings, ranked refactor suggestions,
-or NAECHIM-style content recommendation).
+or alternative recommendation systems).
 
 This module is opt-in and orthogonal to Plan/Task DAG. Pick whichever
 fits the workflow:

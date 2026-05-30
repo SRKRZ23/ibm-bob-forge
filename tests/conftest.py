@@ -211,7 +211,7 @@ def sample_scan_result():
             owasp_id="LLM01",
             owasp_name="Prompt Injection",
             severity="HIGH",
-            suggested_action="Add SOUF AI DPI input sanitisation"
+            suggested_action="Add DPI input sanitisation"
         ),
         LLMCallSite(
             file="/test/app.py",

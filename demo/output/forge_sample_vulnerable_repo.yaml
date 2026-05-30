@@ -2,7 +2,7 @@ version: '1.0'
 policy_name: forge_sample_vulnerable_repo
 generated_by: FORGE v1.0
 generated_at: '2026-05-17T16:15:21'
-source_repo: /Users/sardorrazikov1/Alish/competitions/ibmbob/forge/demo/sample_vulnerable_repo
+source_repo: ./demo/sample_vulnerable_repo
 owasp_findings:
 - LLM02
 - LLM05

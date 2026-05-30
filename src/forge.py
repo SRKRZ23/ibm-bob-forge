@@ -3,7 +3,7 @@ FORGE — IBM Bob-powered LLM governance policy generator.
 
 Full pipeline:
   1. Scan repository for LLM call sites + OWASP vulnerability patterns
-  2. Generate SOUF AI / Lobster Trap policy YAML tailored to the repo
+  2. Generate DPI engine / Lobster Trap policy YAML tailored to the repo
   3. Log every action in BobShell (tamper-evident audit trail)
   4. Verify generated policy imports into Lobster Trap
 

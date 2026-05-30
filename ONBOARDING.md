@@ -11,7 +11,7 @@ Welcome to FORGE! This guide will take you from `git clone` to running your firs
 **Why FORGE exists:** As organizations adopt LLMs, they face new security risks—prompt injection, credential leakage, excessive agency, and more. FORGE bridges the gap between vulnerability detection and policy enforcement by:
 
 1. **Scanning** your codebase to detect OWASP LLM Top 10 vulnerabilities
-2. **Generating** SOUF AI/Lobster Trap YAML policies tailored to your specific risks
+2. **Generating** DPI engine/Lobster Trap YAML policies tailored to your specific risks
 3. **Auditing** every action with IBM Bob's tamper-evident BobShell logging
 
 One command takes you from repository to protected.
@@ -64,7 +64,7 @@ python src/cli/__main__.py scan --repo demo/sample_vulnerable_repo --out demo/ou
 **What happens:**
 - FORGE scans all Python files in `demo/sample_vulnerable_repo/`
 - Detects LLM call sites, prompt injection risks, hardcoded credentials, etc.
-- Generates a SOUF AI policy YAML file
+- Generates a DPI policy YAML file
 - Creates a BobShell audit trail
 
 ### Step 2: Examine the Scan Output
@@ -148,7 +148,7 @@ forge/
 │   │                             #    - Returns ScanResult with all findings
 │   │
 │   ├── generator/
-│   │   └── policy_generator.py   # 📋 SOUF AI policy generator
+│   │   └── policy_generator.py   # 📋 DPI policy generator
 │   │                             #    - Converts scan findings to YAML policies
 │   │                             #    - Creates ingress/egress rules per OWASP category
 │   │                             #    - Outputs Lobster Trap-compatible YAML
@@ -253,7 +253,7 @@ In the same file, update the `_suggested_action()` function (around line 160):
 def _suggested_action(owasp_id: str) -> str:
     actions = {
         # ... existing actions ...
-        "LLM07": "Move system prompts to config; add ingress validation and egress logging (SOUF AI)",
+        "LLM07": "Move system prompts to config; add ingress validation and egress logging (DPI engine)",
     }
     return actions.get(owasp_id, "Review and add appropriate governance layer")
 ```
@@ -628,7 +628,7 @@ pytest tests/test_scanner.py::test_scan_repo -v --tb=short
 ### External Resources
 
 - **[OWASP LLM Top 10 (2025 v2)](https://owasp.org/www-project-top-10-for-large-language-model-applications/)** — Official OWASP reference
-- **[SOUF AI Documentation](https://github.com/your-org/souf-ai)** — Policy framework docs
+- **[DPI engine Documentation](https://github.com/your-org/souf-ai)** — Policy framework docs
 - **[Lobster Trap](https://github.com/your-org/lobster-trap)** — Runtime enforcement engine
 
 ### Getting Support

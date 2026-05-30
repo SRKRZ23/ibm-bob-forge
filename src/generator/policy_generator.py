@@ -1,5 +1,5 @@
 """
-FORGE Policy Generator — converts scan findings into SOUF AI YAML policies.
+FORGE Policy Generator — converts scan findings into DPI engine YAML policies.
 
 For each OWASP category found, generates:
 - Targeted ingress rules (input sanitisation)
@@ -7,7 +7,7 @@ For each OWASP category found, generates:
 - Rate limit config
 - Audit log rules
 
-Output is a valid SOUF AI / Lobster Trap policy YAML ready for import.
+Output is a valid DPI engine / Lobster Trap policy YAML ready for import.
 """
 from __future__ import annotations
 
@@ -187,7 +187,7 @@ def generate_policy(
     strict_mode: bool = False,
 ) -> dict:
     """
-    Generate a SOUF AI YAML policy dict from a ScanResult.
+    Generate a DPI engine YAML policy dict from a ScanResult.
     """
     owasp_found = set(scan.by_owasp().keys())
     name = policy_name or f"forge_{scan.repo_path.split('/')[-1]}"

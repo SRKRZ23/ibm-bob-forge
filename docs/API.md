@@ -21,7 +21,7 @@ Complete reference for using FORGE programmatically in your Python applications.
 FORGE provides three main APIs:
 
 1. **Scanner API** (`src.scanner.repo_scanner`): Scan repositories for LLM vulnerabilities
-2. **Generator API** (`src.generator.policy_generator`): Generate SOUF AI policies
+2. **Generator API** (`src.generator.policy_generator`): Generate DPI policies
 3. **BobShell API** (`src.audit.bobshell`): Create tamper-evident audit logs
 
 ### Installation
@@ -122,7 +122,7 @@ OWASP categories: LLM01, LLM02, LLM06
 [HIGH] LLM01 - Prompt Injection
   File: app.py:15
   Code: prompt = f"Summarize: {user_input}"
-  Fix: Add SOUF AI DPI input sanitisation before LLM call
+  Fix: Add DPI input sanitisation before LLM call
 ```
 
 #### Example 2: Custom File Extensions
@@ -190,7 +190,7 @@ for owasp_id, findings in by_category.items():
 
 ### `generate_policy()`
 
-Generates a SOUF AI YAML policy from scan results.
+Generates a DPI policy YAML policy from scan results.
 
 #### Function Signature
 

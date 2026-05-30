@@ -27,8 +27,8 @@ from generator.policy_generator import generate_policy, policy_to_yaml
 from audit.bobshell import BobShell
 
 ROOT = Path(__file__).resolve().parents[4]  # Alish/
-ATLAS_DIR = str(ROOT / "competitions" / "aiagentolympics" / "atlas")
-CITADEL_DIR = str(ROOT / "competitions" / "gemma4good" / "citadel")
+REPO_A_DIR = str(ROOT / "demo_repos" / "repo_a")
+REPO_B_DIR = str(ROOT / "demo_repos" / "repo_b")
 FORGE_DIR = str(ROOT / "competitions" / "ibmbob" / "forge")
 
 PASS = 0
@@ -48,21 +48,21 @@ def check(name: str, condition: bool, detail: str = "") -> None:
 # ── T1: Scanner finds LLM call sites ───────────────────────────────────────
 
 print("\nT1: Scanner — LLM call site detection")
-scan = scan_repo(ATLAS_DIR)
-check("ATLAS: found ≥1 LLM sites", scan.total_findings >= 1, f"{scan.total_findings} findings")
-check("ATLAS: scanned ≥5 files", scan.total_files_scanned >= 5, f"{scan.total_files_scanned} files")
+scan = scan_repo(REPO_A_DIR)
+check("RepoA: found ≥1 LLM sites", scan.total_findings >= 1, f"{scan.total_findings} findings")
+check("RepoA: scanned ≥5 files", scan.total_files_scanned >= 5, f"{scan.total_files_scanned} files")
 
-scan_citadel = scan_repo(CITADEL_DIR)
-check("CITADEL: found ≥1 LLM sites", scan_citadel.total_findings >= 1, f"{scan_citadel.total_findings} findings")
+scan_repo_b = scan_repo(REPO_B_DIR)
+check("RepoB: found ≥1 LLM sites", scan_repo_b.total_findings >= 1, f"{scan_repo_b.total_findings} findings")
 
 # ── T2: OWASP mappings ──────────────────────────────────────────────────────
 
 print("\nT2: OWASP category mappings")
 all_findings = scan.call_sites + scan.governance_gaps
 owasp_atlas = {f.owasp_id for f in all_findings}
-check("ATLAS: has LLM01 (prompt injection)", "LLM01" in owasp_atlas, f"categories: {sorted(owasp_atlas)}")
+check("RepoA: has LLM01 (prompt injection)", "LLM01" in owasp_atlas, f"categories: {sorted(owasp_atlas)}")
 # Either LLM02 (output handling) or LLM08 (excessive agency) expected for orchestrator patterns
-check("ATLAS: has LLM02 or LLM08", bool({"LLM02", "LLM08"} & owasp_atlas), f"categories: {sorted(owasp_atlas)}")
+check("RepoA: has LLM02 or LLM08", bool({"LLM02", "LLM08"} & owasp_atlas), f"categories: {sorted(owasp_atlas)}")
 
 # ── T3: Generated YAML structural validity ──────────────────────────────────
 
@@ -88,7 +88,7 @@ check("YAML: all priorities 1–100", all(1 <= p <= 100 for p in priorities), f"
 
 print("\nT4: BobShell audit trail")
 bob = BobShell()
-bob.log("scan_start", {"repo": ATLAS_DIR}, "started")
+bob.log("scan_start", {"repo": REPO_A_DIR}, "started")
 bob.log("scan_complete", {"findings": 7}, "done")
 bob.log("policy_generated", {"rules": 4}, "done")
 bob.log("policy_written", {"path": "out.yaml"}, "done")
@@ -119,7 +119,7 @@ else:
 print("\nT5: End-to-end FORGE pipeline")
 import tempfile, os
 with tempfile.TemporaryDirectory() as tmp:
-    result = run_forge(ATLAS_DIR, policy_name="atlas_e2e", out_dir=tmp)
+    result = run_forge(REPO_A_DIR, policy_name="atlas_e2e", out_dir=tmp)
     check("Pipeline: ForgeResult returned", result is not None, "")
     check("Pipeline: policy YAML populated", len(result.policy_yaml) > 100, f"{len(result.policy_yaml)} chars")
     check("Pipeline: bobshell has records", result.bobshell.get("total_actions", 0) >= 4, "")
@@ -152,14 +152,14 @@ with tempfile.TemporaryDirectory() as tmp:
 
 print("\nT7: Performance")
 t0 = time.perf_counter()
-scan_repo(ATLAS_DIR)
-atlas_ms = (time.perf_counter() - t0) * 1000
-check(f"ATLAS scan < 500ms", atlas_ms < 500, f"{atlas_ms:.1f}ms")
+scan_repo(REPO_A_DIR)
+repo_a_ms = (time.perf_counter() - t0) * 1000
+check(f"RepoA scan < 500ms", repo_a_ms < 500, f"{repo_a_ms:.1f}ms")
 
 t0 = time.perf_counter()
-scan_repo(CITADEL_DIR)
-citadel_ms = (time.perf_counter() - t0) * 1000
-check(f"CITADEL scan < 500ms", citadel_ms < 500, f"{citadel_ms:.1f}ms")
+scan_repo(REPO_B_DIR)
+repo_b_ms = (time.perf_counter() - t0) * 1000
+check(f"RepoB scan < 500ms", repo_b_ms < 500, f"{repo_b_ms:.1f}ms")
 
 # ── Summary ─────────────────────────────────────────────────────────────────
 
